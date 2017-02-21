@@ -1,7 +1,7 @@
 # nowWhat or whatNow
 
 ## Description
-  
+
 ## Features
 
 ## Technologies Used
@@ -10,8 +10,8 @@
   * CSS
   * JavaScript
     * ExpressJS
-    * Knex.js
-  * ReactJS
+    * KnexJS
+    * ReactJS
   * PostgreSQL
 
 ## Future Development
