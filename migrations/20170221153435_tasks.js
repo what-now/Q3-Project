@@ -12,17 +12,18 @@ exports.up = function(knex, Promise) {
     table.string('title')
       .notNullable()
       .defaultTo('');
-    table.string('description')
+    table.text('description')
       .notNullable()
       .defaultTo('');
     table.integer('required_time')
       .notNullable();
     table.integer('total_time')
+      .defaultTo(0)
       .notNullable();
     table.integer('priority')
       .notNullable();
-    table.timestamp('completed_at');
-    table.timestmps(true, true);
+    table.timestamp('completed_at').defaultTo(null);
+    table.timestamps(true, true);
   })
 };
 
