@@ -12,10 +12,11 @@ exports.up = function(knex, Promise) {
     table.integer('duration')
       .notNullable()
       .defaultTo(0);
+    table.timestamp('ends_at');
     table.boolean('finished')
       .notNullable()
       .defaultTo(false);
-    table.timestamp('checked_at');
+    table.timestamp('checked_at').defaultTo(null);
   });
 };
 
