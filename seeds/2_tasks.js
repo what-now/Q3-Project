@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
         total_time: 30,
         priority: 1,
         created_at: new Date('2016-06-29 14:26:16 UTC'),
-        updated_at: new Date('2016-06-29 14:26:16 UTC')
+        updated_at: new Date('2016-06-29 14:26:16 UTC'),
         completed_at: null
       }, {
         id: 2,
@@ -22,7 +22,7 @@ exports.seed = function(knex, Promise) {
         total_time: 30,
         priority: 3,
         created_at: new Date('2016-10-15 14:26:16 UTC'),
-        updated_at: new Date('2016-10-20 14:26:16 UTC')
+        updated_at: new Date('2016-10-20 14:26:16 UTC'),
         completed_at: null
       }, {
         id: 3,
@@ -33,7 +33,7 @@ exports.seed = function(knex, Promise) {
         total_time: 0,
         priority: 2,
         created_at: new Date('2017-02-13 14:26:16 UTC'),
-        updated_at: new Date('2017-02-14 14:26:16 UTC')
+        updated_at: new Date('2017-02-14 14:26:16 UTC'),
         completed_at: null
       }, {
         id: 4,
@@ -44,7 +44,7 @@ exports.seed = function(knex, Promise) {
         total_time: 40,
         priority: 3,
         created_at: new Date('2017-01-15 14:26:16 UTC'),
-        updated_at: new Date('2017-01-20 14:26:16 UTC')
+        updated_at: new Date('2017-01-20 14:26:16 UTC'),
         completed_at: null
       }]);
     })
