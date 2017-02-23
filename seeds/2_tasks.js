@@ -2,7 +2,7 @@
 exports.seed = function(knex, Promise) {
   return knex('tasks').del()
     .then(() => {
-      return knex('table_name').insert([{
+      return knex('tasks').insert([{
         id: 1,
         user_id: 1,
         title: 'Do laundry',
@@ -10,8 +10,9 @@ exports.seed = function(knex, Promise) {
         required_time: 60,
         total_time: 30,
         priority: 1,
-        previously_at: null,
-        completed_at: null;
+        created_at: new Date('2016-06-29 14:26:16 UTC'),
+        updated_at: new Date('2016-06-29 14:26:16 UTC')
+        completed_at: null
       }, {
         id: 2,
         user_id: 1,
@@ -20,8 +21,9 @@ exports.seed = function(knex, Promise) {
         required_time: 120,
         total_time: 30,
         priority: 3,
-        previously_at: null,
-        completed_at: null;
+        created_at: new Date('2016-10-15 14:26:16 UTC'),
+        updated_at: new Date('2016-10-20 14:26:16 UTC')
+        completed_at: null
       }, {
         id: 3,
         user_id: 2,
@@ -30,8 +32,9 @@ exports.seed = function(knex, Promise) {
         required_time: 30,
         total_time: 0,
         priority: 2,
-        previously_at: null,
-        completed_at: null;
+        created_at: new Date('2017-02-13 14:26:16 UTC'),
+        updated_at: new Date('2017-02-14 14:26:16 UTC')
+        completed_at: null
       }, {
         id: 4,
         user_id: 2,
@@ -40,8 +43,9 @@ exports.seed = function(knex, Promise) {
         required_time: 120,
         total_time: 40,
         priority: 3,
-        previously_at: null,
-        completed_at: null;
+        created_at: new Date('2017-01-15 14:26:16 UTC'),
+        updated_at: new Date('2017-01-20 14:26:16 UTC')
+        completed_at: null
       }]);
     })
     .then(() => {

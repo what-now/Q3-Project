@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(() => {
       return knex('users').insert([{
         id: 1,
-        name: 'Hiromi'
+        name: 'Hiromi',
         email: 'hiromi@galvanize.com',
         h_pw: '$2a$12$LaKBUi8mCFc/9LiCtvwcvuNIjgaq9LJuy/NO.m4P5.3FP8zA6t2Va'
       }, {
