@@ -1,5 +1,5 @@
 import React from 'react'
-import {Item, ProgressBar} from 'react-bootstrap'
+import {ListGroupItem, ProgressBar} from 'react-bootstrap'
 
 export default function TaskProgress({ task }) {
   return (

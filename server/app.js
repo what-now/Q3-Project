@@ -10,14 +10,28 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const app = express();
+const jwt = require('jsonwebtoken');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser())
 
+
+
 // app.use(express.static(path.join(__dirname, '/../', 'public')));
-app.use(express.static(path.resolve(__dirname, '..', 'public-auth')));
-// app.use(express.static(path.resolve(__dirname, '..', 'build')));
+// app.use('/', function (req, res) {
+//   console.log(req);
+//   jwt.verify(req.cookies.token, process.env.JWT_KEY, err => {
+//     err
+//     // ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'public-auth')})
+//     ? express.static('/users', path.resolve(__dirname, '/../', 'public-auth'))
+//     // : res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'build')})
+//     : express.static(path.resolve(__dirname, '/../', 'build'))
+//   })
+// })
+
+app.use(express.static(path.resolve(__dirname, '..', 'auth'),{index:false}))
+app.use(express.static(path.resolve(__dirname, '..', 'build'),{index:false}))
 
 app.use('/api', require('./api/api'));
 
@@ -28,12 +42,11 @@ app.use('/api', require('./api/api'));
 //
 app.use('*', function(req, res, next) {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err) => {
-    if (err) {
-      return res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'public-auth')})
-    }
-
-    res.sendFile('index.html', {root: path.join(__dirname, '/../', 'public')})
-  });
+    console.log(err);
+    err
+    ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})
+    : res.sendFile('index.html', {root: path.join(__dirname, '/../', 'build')})
+  })
 });
 
 // app.use(function(req, res, next) {
