@@ -15,6 +15,6 @@
     }
   }
 
-  angular.module('app', []).component('login', { controller, templateUrl: '/login.template.html'})
+  angular.module('app').component('login', { controller, templateUrl: 'js/login/login.template.html'})
 
 })();

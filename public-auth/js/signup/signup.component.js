@@ -1,10 +1,10 @@
 (function() {
   'use strict';
 
-  angular.module('app', [])
+  angular.module('app')
     .component('signup', {
       controller: controller,
-      templateUrl: 'signup.template.html'
+      templateUrl: '/js/signup/signup.template.html'
     });
 
     function controller () {

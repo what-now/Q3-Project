@@ -6,13 +6,17 @@
     <title>App's name goes here</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <base href="/">
 
-    <script src="/angular.min.js" charset="utf-8"></script>
-    <script src="/signup.component.js" charset="utf-8"></script>
-    <script src="/login.component.js" charset="utf-8"></script>
+    <script defer src="js/vendor/angular.min.js" charset="utf-8"></script>
+    <script defer src="js/vendor/angular-ui-router.min.js" charset="utf-8"></script>
+    <script defer src="js/app.module.js" charset="utf-8"></script>
+    <script defer src="js/app.config.js" charset="utf-8"></script>
+    <script defer src="js/signup/signup.component.js" charset="utf-8"></script>
+    <script defer src="js/login/login.component.js" charset="utf-8"></script>
   </head>
   <body class="container-fluid">
     <h1>APP TITLE GOES HERE</h1>
-    <login></login>
+    <ui-view></ui-view>
   </body>
 </html>
