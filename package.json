@@ -6,6 +6,7 @@
     "react-scripts": "0.9.0"
   },
   "dependencies": {
+    "angular": "^1.6.2",
     "express": "^4.14.1",
     "knex": "^0.12.7",
     "morgan": "^1.8.1",
