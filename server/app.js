@@ -11,37 +11,31 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const app = express();
 
-//what is this?
-if (process.env.NODE_ENV !== 'test') {
-  const logger = require('morgan')
-  app.use(logger('dev'))
-}
-
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser())
 
-app.use(express.static(path.join(__dirname, '/../', 'public')));
-app.use(express.static(path.join(__dirname, '/../', 'node_modules')));
+// app.use(express.static(path.join(__dirname, '/../', 'public')));
+app.use(express.static(path.resolve(__dirname, '..', 'public-auth')));
 // app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
-app.use(morgan('dev'));
-
-app.use('/api', require('./routes/api'));
+app.use('/api', require('./api/api'));
 
 // app.get('*', (req, res) => {
 //   console.log('this is a test');
 //   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 // });
-
+//
 app.use('*', function(req, res, next) {
-  res.sendFile('index.html', {root: path.join(__dirname, '/../', 'public')})
+  res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'public-auth')})
+  // res.sendFile('index.html', {root: path.join(__dirname, '/../', 'public')})
 });
 
-app.use(function(req, res, next) {
-  var err = new Error('Not Found')
-  err.status = 404
-  next(err)
-});
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found')
+//   err.status = 404
+//   next(err)
+// });
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message
