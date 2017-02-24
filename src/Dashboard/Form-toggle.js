@@ -22,7 +22,12 @@ class FormToggle extends Component {
     return <div>
       <Button bsStyle="primary" onClick={this.toggleForm}>Add new task</Button>
       <Modal show={this.state.formVisible} onHide={this.toggleForm}>
-        <NewTaskForm submit={this.submitTask}/>
+        <Modal.Header>
+          <Modal.Title>New Task</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <NewTaskForm submit={this.submitTask}/>
+        </Modal.Body>
       </Modal>
     </div>
   }
