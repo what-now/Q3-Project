@@ -31,7 +31,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    return <div>
+    return <div className="container-fluid">
       <h4>Progress</h4>
       <Progress tasks={this.state.tasks}/>
       <FormToggle/>
