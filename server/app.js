@@ -27,8 +27,13 @@ app.use('/api', require('./api/api'));
 // });
 //
 app.use('*', function(req, res, next) {
-  res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'public-auth')})
-  // res.sendFile('index.html', {root: path.join(__dirname, '/../', 'public')})
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err) => {
+    if (err) {
+      return res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'public-auth')})
+    }
+
+    res.sendFile('index.html', {root: path.join(__dirname, '/../', 'public')})
+  });
 });
 
 // app.use(function(req, res, next) {
