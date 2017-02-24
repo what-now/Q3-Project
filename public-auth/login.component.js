@@ -1,13 +1,20 @@
 (function() {
   'use strict';
 
-  angular.module('app').component('login', { controller, templateUrl: '/login.template.html'})
+  class controller {
+    constructor() {
+      // services go here
+    }
 
-  function controller() {
-    const vm = this
-
-    vm.$onInit = () => {
+    $onInit() {
       console.log('ready');
     }
+    login(event) {
+      event.preventDefault()
+      console.log(this.user);
+    }
   }
+
+  angular.module('app', []).component('login', { controller, templateUrl: '/login.template.html'})
+
 })();
