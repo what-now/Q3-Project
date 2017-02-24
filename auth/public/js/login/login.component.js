@@ -8,9 +8,9 @@
 
     login(event) {
       event.preventDefault()
-      this.loginService.login(this.user)
+      this.loginService.login(this.user).then(() => window.location = '/')
     }
   }
 
-  angular.module('app').component('login', { controller, templateUrl: 'js/login/login.template.html'})
+  angular.module('app').component('login', { controller, templateUrl: 'public/js/login/login.template.html'})
 })();
