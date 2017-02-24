@@ -2,6 +2,7 @@ const router = require('express').Router();
 const knex = require('../../knex');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const boom = require('boom');
 
 router.post('/', (req, res, next) => {
   const {email, password} = req.body
@@ -9,29 +10,35 @@ router.post('/', (req, res, next) => {
   let user
   knex('users').where('email', email).then(arr => {
     if (!arr.length) {
-      throw new Error('')
+      throw boom.create(400, 'Invalid email or password');
     }
 
     user = arr[0]
     return bcrypt.compare(password, user.h_pw)
-  }).then((result) => {
+  })
+  .then((result) => {
     if (!result) {
-      throw new Error('bcrypt failed')
+      throw boom.create(400, 'Invalid email or password');
     }
 
-    delete user.password
+    delete user.h_pw;
 
     const claim = {id: user.id}
     const token = jwt.sign(claim, process.env.JWT_KEY, {
-      expiresIn: '120 days',
+      expiresIn: '120 days'
     });
+
+    console.log('before the cookie in token');
 
     res.cookie('token', token, {
       httpOnly: true,
       expiresIn: new Date(Date.now() + 3600000 * 24 * 120),
       secure: router.get('env') === 'Production',
-    }).send(user);
-  }).catch(err => next(err));
+    });
+
+    res.send(user);
+  })
+  .catch(err => next(err));
 });
 
 module.exports = router;

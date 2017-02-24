@@ -22,3 +22,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/*Task-progress.js*/
+
+.taskProgress {
+  padding: 10px;
+  border: 1px solid rgb(220,220,220);
+  border-radius: 5px;
+  margin: 2px;
+}

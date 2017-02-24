@@ -5,7 +5,7 @@
   loginService.$inject = ['$http']
   function loginService($http) {
     this.login = function(data) {
-      return $http.post('/api/token/', data).catch(err => console.error(err))
+      return $http.post('/api/token/', data).catch(err => console.error('error in service', err))
     }
   }
 })();

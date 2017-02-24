@@ -3,11 +3,13 @@ const knex = require('../../knex');
 const bcrypt = require('bcrypt');
 
 router.post('/', (req, res) => {
+  console.log('in users routew');
   const { email, password, name } = req.body
 
   knex('users').where('email', email).then(arr => {
     if (arr.length) {
-      throw new Error('')
+      console.log(arr);
+      throw new Error('This error')
     }
 
     return bcrypt.hash(password, 12)

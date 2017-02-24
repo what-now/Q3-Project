@@ -1,11 +1,12 @@
 import React from 'react'
-import {ListGroupItem, ProgressBar} from 'react-bootstrap'
+import {ProgressBar} from 'react-bootstrap'
 
 export default function TaskProgress({ task }) {
   return (
-    <ListGroupItem header={`${task.title} • ${task.total_time}min/${task.required_time}min`}>
-      {task.description}
-      <ProgressBar now={task.total_time / task.required_time * 100}/>
-    </ListGroupItem>
+    <div className="taskProgress">
+      <h5>{`${task.title} • ${task.total_time}min/${task.required_time}min`}</h5>
+      <p>{task.description}</p>
+      <ProgressBar now={task.total_time / task.required_time * 100} />
+    </div>
   )
 }

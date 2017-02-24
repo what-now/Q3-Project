@@ -10,10 +10,11 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const app = express();
+const jwt = require('jsonwebtoken');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // app.use(express.static(path.join(__dirname, '/../', 'public')));
 app.use(express.static(path.resolve(__dirname, '..', 'public-auth')));
