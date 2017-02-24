@@ -2,19 +2,15 @@
   'use strict';
 
   class controller {
-    constructor() {
-      // services go here
+    constructor(loginService) {
+      this.loginService = loginService
     }
 
-    $onInit() {
-      console.log('ready');
-    }
     login(event) {
       event.preventDefault()
-      console.log(this.user);
+      this.loginService.login(this.user)
     }
   }
 
   angular.module('app').component('login', { controller, templateUrl: 'js/login/login.template.html'})
-
 })();
