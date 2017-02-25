@@ -16,20 +16,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-
-
-// app.use(express.static(path.join(__dirname, '/../', 'public')));
-// app.use('/', function (req, res) {
-//   console.log(req);
-//   jwt.verify(req.cookies.token, process.env.JWT_KEY, err => {
-//     err
-//     // ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'public-auth')})
-//     ? express.static('/users', path.resolve(__dirname, '/../', 'public-auth'))
-//     // : res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'build')})
-//     : express.static(path.resolve(__dirname, '/../', 'build'))
-//   })
-// })
-
 app.use(express.static(path.resolve(__dirname, '..', 'auth'),{index:false}))
 app.use(express.static(path.resolve(__dirname, '..', 'build'),{index:false}))
 

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 import { Navbar, Nav } from 'react-bootstrap'
 import './App.css';
+import Main from './Main/Main'
 import Dashboard from './Dashboard/Dashboard'
+import TimeInput from './TimeInput/Time-input'
 
 class App extends Component {
   render() {
@@ -15,11 +17,17 @@ class App extends Component {
         </Navbar.Header>
       </Navbar>
 
-      {/* <Router>
-        <Route />
-      </Router> */}
+      <Router history={browserHistory}>
+        <Route path="/" component="Main">
+        
+          {/* <Route />
+          <Route/> */}
+          <Route path="/dashboard" component="Dashboard"/>
+        </Route>
+      </Router>
 
-      <Dashboard />
+      <TimeInput />
+      {/* <Dashboard /> */}
 
     </div>
   }
