@@ -1,5 +1,6 @@
 import React from 'react'
 import {ProgressBar} from 'react-bootstrap'
+import './Task-progress.css'
 
 export default function TaskProgress({ task }) {
   return (
