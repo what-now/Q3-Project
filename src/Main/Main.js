@@ -13,16 +13,15 @@ class Main extends Component {
   }
 
   render() {
-    return React.cloneElement(this.props.children, {})
+    const { tasks, sessions } = this.state
+    return React.cloneElement(this.props.children, {tasks, sessions})
   }
 
   componentDidMount() {
     request.get('/api/tasks').then(({data}) => {
-      console.log(data);
       this.setState({ tasks: data })
     })
     request.get('/api/sessions').then(({data}) => {
-      console.log(data);
       this.setState({ sessions: data })
     })
   }

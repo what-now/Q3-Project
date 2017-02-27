@@ -9,25 +9,6 @@ class Dashboard extends Component {
     super(props)
 
     this.state = {
-      tasks: [{
-        id:1,
-        user_id:1,
-        title: 'some task',
-        description: 'hard-coded sample data',
-        required_time: 150,
-        total_time: 120,
-        previously_at: '2017-02-21 00:00:00 PST',
-        priority: 2
-      },{
-        id:2,
-        user_id:1,
-        title: 'some task',
-        description: 'hard-coded sample data',
-        required_time: 150,
-        total_time: 120,
-        previously_at: '2017-02-21 00:00:00 PST',
-        priority: 2
-      }],
 
     }
   }
@@ -41,8 +22,8 @@ class Dashboard extends Component {
         : null
       } */}
       {
-        this.state.tasks.length
-        ? <Progress tasks={this.state.tasks}/>
+        this.props.tasks.length
+        ? <Progress tasks={this.props.tasks}/>
         : null
       }
       <FormToggle/>

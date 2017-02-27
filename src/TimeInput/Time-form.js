@@ -33,9 +33,9 @@ class TimeForm extends Component {
     return <form onSubmit={() => submit(this.state)}>
       <FormGroup onChange={this.recalculateTime}>
         <InputGroup bsSize="large" className="TimeForm-input">
-          <FormControl id="hours"/>
+          <FormControl type="number" id="hours"/>
           <InputGroup.Addon>hrs.</InputGroup.Addon>
-          <FormControl id="minutes"/>
+          <FormControl type="number" id="minutes"/>
           <InputGroup.Addon>min.</InputGroup.Addon>
         </InputGroup>
       </FormGroup>
@@ -49,7 +49,7 @@ class TimeForm extends Component {
             <Button value="work" active={this.state.location === 'work'} onClick={this.handleButtons}>Work</Button>
           </ButtonGroup>
           <ButtonGroup>
-            <Button value="anywhere" active={this.state.location === 'anywhere'} onClick={this.handleButtons}>Anywhere</Button>
+            <Button value="anywhere" active={this.state.location === 'anywhere'} onClick={this.handleButtons}>Other</Button>
           </ButtonGroup>
         </ButtonGroup>
       </FormGroup>
