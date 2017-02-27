@@ -2,20 +2,21 @@ import React, {Component} from 'react'
 import './TimeInput.css'
 import TimeForm from './Time-form.js'
 
+// input component, called by main.
+
 class TimeInput extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      time: 0,
-      location: ''
+      filterFunction() {}
     }
 
     this.submit = this.submit.bind(this)
   }
 
   submit() {
-
+    // return a filter function, set to state.
   }
 
   render() {
@@ -25,6 +26,10 @@ class TimeInput extends Component {
       </div>
       <TimeForm submit={this.submit}/>
     </div>
+  }
+
+  componentWillMount() {
+    // redirect to dashboard if tasks.length < 1
   }
 }
 

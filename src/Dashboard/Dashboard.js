@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 
+// main component for Dashboard. Called by Main.
+
 class Dashboard extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +35,16 @@ class Dashboard extends Component {
   render() {
     return <div className="container-fluid">
       <h4>Progress</h4>
-      <Progress tasks={this.state.tasks}/>
+      {/* {
+        this.state.current
+        ? <OnGoing sessions={this.state.current} />
+        : null
+      } */}
+      {
+        this.state.tasks.length
+        ? <Progress tasks={this.state.tasks}/>
+        : null
+      }
       <FormToggle/>
     </div>
   }

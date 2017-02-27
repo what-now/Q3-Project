@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Button, Modal} from 'react-bootstrap'
 import NewTaskForm from './Task-form'
 
+// Modal for form + Button that calls the form. Called by dashboard.
+
 class FormToggle extends Component {
   constructor(props) {
     super(props)

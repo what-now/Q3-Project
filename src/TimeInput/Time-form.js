@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { FormControl, FormGroup, InputGroup, ControlLabel, Button, ButtonGroup } from 'react-bootstrap'
 import './Timeform.css'
 
+// form inside the input page, called by time-input
+
 class TimeForm extends Component {
   constructor(props) {
     super(props)
@@ -10,21 +12,30 @@ class TimeForm extends Component {
       time: 0,
       location: ''
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleButtons = this.handleButtons.bind(this)
+    this.recalculateTime = this.recalculateTime.bind(this)
   }
 
-  handleChange(event) {
-    console.log(event.target);
+  recalculateTime() {
+    const hours = document.getElementById('hours').value
+    const minutes = document.getElementById('minutes').value
+
+    const time = hours * 60 + minutes
+    this.setState({ time })
+  }
+
+  handleButtons({ target }) {
+    this.setState({ location: target.value })
   }
 
   render() {
     const { submit } = this.props
     return <form onSubmit={() => submit(this.state)}>
-      <FormGroup>
+      <FormGroup onChange={this.recalculateTime}>
         <InputGroup bsSize="large" className="TimeForm-input">
-          <FormControl onChange={this.handleChange}/>
+          <FormControl id="hours"/>
           <InputGroup.Addon>hrs.</InputGroup.Addon>
-          <FormControl onChange={this.handleChange}/>
+          <FormControl id="minutes"/>
           <InputGroup.Addon>min.</InputGroup.Addon>
         </InputGroup>
       </FormGroup>
@@ -32,13 +43,13 @@ class TimeForm extends Component {
       <FormGroup className="TimeForm-input">
         <ButtonGroup justified bsSize="large">
           <ButtonGroup>
-            <Button onClick={() => {}}>Home</Button>
+            <Button value="home" active={this.state.location === 'home'} onClick={this.handleButtons}>Home</Button>
           </ButtonGroup>
           <ButtonGroup>
-            <Button onClick={() => {}}>Work</Button>
+            <Button value="work" active={this.state.location === 'work'} onClick={this.handleButtons}>Work</Button>
           </ButtonGroup>
           <ButtonGroup>
-            <Button onClick={() => {}}>Anywhere</Button>
+            <Button value="anywhere" active={this.state.location === 'anywhere'} onClick={this.handleButtons}>Anywhere</Button>
           </ButtonGroup>
         </ButtonGroup>
       </FormGroup>
@@ -46,3 +57,5 @@ class TimeForm extends Component {
     </form>
   }
 }
+
+export default TimeForm

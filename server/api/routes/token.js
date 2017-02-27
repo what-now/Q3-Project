@@ -10,7 +10,7 @@ router.post('/', (req, res, next) => {
   let user
   knex('users').where('email', email).then(arr => {
     if (!arr.length) {
-      throw boom.create(400, 'Invalid email or password');
+      throw boom.badRequest('Invalid email or password');
     }
 
     user = arr[0]
@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
   })
   .then((result) => {
     if (!result) {
-      throw boom.create(400, 'Invalid email or password');
+      throw boom.badRequest('Invalid email or password');
     }
 
     delete user.h_pw;

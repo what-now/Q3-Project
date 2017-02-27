@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { FormGroup, ControlLabel, FormControl, InputGroup, Radio, Button } from 'react-bootstrap'
 
+// form for tasks inside the modal, called by form toggle as newtaskform
+
 class TaskForm extends Component {
   constructor(props) {
     super(props)

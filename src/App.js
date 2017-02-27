@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Navbar, Nav } from 'react-bootstrap'
 import './App.css';
 import Main from './Main/Main'
@@ -18,15 +18,15 @@ class App extends Component {
       </Navbar>
 
       <Router history={browserHistory}>
-        <Route path="/" component="Main">
-        
-          {/* <Route />
-          <Route/> */}
-          <Route path="/dashboard" component="Dashboard"/>
+        <Route path="/" component={Main}>
+
+          <IndexRoute component={TimeInput}/>
+          {/* <Route/> */}
+          <Route path="dashboard" component={Dashboard}/>
         </Route>
       </Router>
 
-      <TimeInput />
+      {/* <TimeInput /> */}
       {/* <Dashboard /> */}
 
     </div>
