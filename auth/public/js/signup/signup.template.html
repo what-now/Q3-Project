@@ -1,23 +1,61 @@
 <h3>Sign up</h3>
 <div>
-  <form ng-submit="$ctrl.signup($event)">
+  <form name="$ctrl.newUserForm" ng-submit="$ctrl.signup($event)" novalidate>
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" ng-model="$ctrl.user.name">
+      <input
+      class="form-control"
+      name="name"
+      ng-class="{'has-error': $ctrl.newUserForm.name.$invalid && $ctrl.newUserForm.name.$touched, 'has-success': $ctrl.newUserForm.name.$valid }"
+      ng-maxlength=15
+      ng-minlength=3
+      ng-model="$ctrl.user.name"
+      required
+      type="text">
     </div>
+    <span ng-show="$ctrl.newUserForm.name.$error.minlength">Name must be more than 3 characters.</span>
+    <span ng-show="$ctrl.newUserForm.name.$error.maxlength">Name should not exceed 15 characters.</span>
     <div class="form-group">
       <label for="name">Email</label>
-      <input type="email" class="form-control" ng-model="$ctrl.user.email">
+      <input
+      class="form-control"
+      name="email"
+      ng-class="{'has-error': $ctrl.newUserForm.email.$invalid && $ctrl.newUserForm.email.$touched, 'has-success': $ctrl.newUserForm.email.$valid }"
+      ng-model="$ctrl.user.email"
+      ng-pattern="$ctrl.regEx"
+      required
+      type="email">
     </div>
+    <span ng-show="$ctrl.newUserForm.email.$error.pattern">Invalid Email</span>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" ng-model="$ctrl.user.password">
+      <input
+      class="form-control"
+      name="password1"
+      ng-class="{'has-error': $ctrl.newUserForm.password1.$invalid && $ctrl.newUserForm.password1.$touched, 'has-success': $ctrl.newUserForm.password1.$valid }"
+      ng-minlength=8
+      ng-model="$ctrl.user.password"
+      required
+      type="password">
     </div>
+    <span ng-show="$ctrl.newUserForm.password1.$error.minlength">Password must be more than 8 characters.</span>
     <div class="form-group">
       <label for="exampleInputPassword1">Confirm Password</label>
-      <input type="password" class="form-control" ng-model="ctrl.user.password">
+      <input
+      class="form-control"
+      name="password2"
+      ng-class="{'has-error': ($ctrl.newUserForm.password2.$invalid || ($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue)) && $ctrl.newUserForm.password2.$touched, 'has-success': $ctrl.newUserForm.password2.$valid && ($ctrl.newUserForm.password2.$viewValue === $ctrl.newUserForm.password1.$viewValue)}"
+      ng-minlength=8
+      ng-model="ctrl.user.password"
+      required
+      type="password">
     </div>
-    <button type="submit" class="btn btn-primary">Create New Account</button>
+    <span ng-show="($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue) && $ctrl.newUserForm.password2.$touched">Passwords do not match.</span>
+    <input
+      class="btn btn-primary"
+      ng-disabled="$ctrl.newUserForm.$invalid"
+      type="submit"
+      value="Create New Account">
   </form>
 </div>
 <a ui-sref="login">Already registered? Log in here</a>
