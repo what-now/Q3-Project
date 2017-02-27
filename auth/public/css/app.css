@@ -1,3 +1,11 @@
 .app-title {
   text-align: center;
 }
+
+.has-error {
+  border-color: red;
+}
+
+.has-success {
+  border-color: green;
+}
