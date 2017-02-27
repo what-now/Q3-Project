@@ -1,9 +1,21 @@
-import React, {Component} from 'react'
-import { FormGroup, ControlLabel, FormControl, InputGroup, Radio, Button, Checkbox, Col, Row } from 'react-bootstrap'
+import React from 'react'
+import { FormGroup, ControlLabel, FormControl, InputGroup, Button, Col, Row } from 'react-bootstrap'
+import RadioGroup from './Radio-group'
 
 // form for tasks inside the modal, called by form toggle as newtaskform
 
 export default function TaskForm ({ change, submit, setTime, task }) {
+  const radioOptionsLocation = [
+    { string: 'Home', value: 'home' },
+    { string: 'Work', value: 'work' },
+    { string: 'Anywhere', value: 'anywhere' }
+  ]
+  const radioOptionsPriority = [
+    { string:'High', value: '3' },
+    { string:'Medium', value: '2'},
+    { string:'Low', value: '1' }
+  ]
+
   return <form onSubmit={(event) => {
     event.preventDefault()
     submit()
@@ -35,24 +47,10 @@ export default function TaskForm ({ change, submit, setTime, task }) {
     </Row>
     <Row>
       <Col xs={6}>
-        <FormGroup>
-          <ControlLabel>Location</ControlLabel>
-          <InputGroup onChange={(e) => change(e, 'location')}>
-            <Radio checked={task.location === "home"} value="home" inline>Home</Radio>
-            <Radio checked={task.location === "work"} value="work" inline>Work</Radio>
-            <Radio checked={task.location === "anywhere"} value="anywhere" inline>Anywhere</Radio>
-          </InputGroup>
-        </FormGroup>
+        <RadioGroup options={radioOptionsLocation} stateKey={'location'} task={task} change={change} label="Location"/>
       </Col>
       <Col xs={6}>
-        <FormGroup>
-          <ControlLabel>Priority</ControlLabel>
-          <InputGroup onChange={(e) => change(e, 'priority')}>
-            <Radio checked={task.priority === "1"} value="1" inline>Low</Radio>
-            <Radio checked={task.priority === "2"} value="2" inline>Medium</Radio>
-            <Radio checked={task.priority === "3"} value="3" inline>High</Radio>
-          </InputGroup>
-        </FormGroup>
+        <RadioGroup options={radioOptionsPriority} stateKey={'priority'} task={task} change={change} label="Priority"/>
       </Col>
     </Row>
     <Button type="submit" bsStyle="primary">Add New</Button>
