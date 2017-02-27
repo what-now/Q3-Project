@@ -23,9 +23,16 @@ router.get('/', auth, (req, res, next) => {
 })
 
 router.post('/', auth, (req, res, next) => {
-  const id = req.claim.id
-  console.log(req.body);
-  res.send('check')
+  const user_id = req.claim.id
+  const { title, description, required_time, location, priority } = req.body
+
+  const task = { user_id, title, description, required_time, location, priority, total_time: 0 }
+
+  knex('tasks').insert(task, '*').then(arr => {
+    res.send(arr[0])
+  })
+
+
 })
 
 module.exports = router;
