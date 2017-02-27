@@ -11,7 +11,7 @@ class FormToggle extends Component {
     this.state = { formVisible: false, task:{
       title:'',
       description:'',
-      estimated_time: 0,
+      required_time: 0,
       location: '',
       priority: 1
     } }
@@ -23,7 +23,7 @@ class FormToggle extends Component {
 
   recalculateTime(hrs, min) {
     const value = +hrs * 60 + +min
-    this.handleChange({target: { value }}, 'estimated_time')
+    this.handleChange({target: { value }}, 'required_time')
   }
 
   handleChange(event, field) {

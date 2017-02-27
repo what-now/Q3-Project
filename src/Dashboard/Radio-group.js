@@ -1,6 +1,8 @@
 import React from 'react'
 import {FormGroup, ControlLabel, InputGroup, Radio} from 'react-bootstrap'
 
+// radio buttons for forms. called by task-form
+
 export default function RadioGroup({ stateKey, options, change, task, label }) {
     return <FormGroup>
       <ControlLabel>{label}</ControlLabel>

@@ -28,8 +28,6 @@ router.post('/', (req, res, next) => {
       expiresIn: '120 days'
     });
 
-    console.log('before the cookie in token');
-
     res.cookie('token', token, {
       httpOnly: true,
       expiresIn: new Date(Date.now() + 3600000 * 24 * 120),

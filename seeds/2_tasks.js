@@ -43,7 +43,7 @@ exports.seed = function(knex, Promise) {
         user_id: 2,
         title: 'study more react',
         description: 'checkout this article',
-        locations: 'anywhere',
+        location: 'anywhere',
         required_time: 120,
         total_time: 40,
         priority: 3,

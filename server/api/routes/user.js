@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
 
   knex('users').where('email', email).then(arr => {
     if (arr.length) {
-      throw boom.create(400, 'Email already exists');
+      throw boom.badRequest('Email already exists');
     }
 
     return bcrypt.hash(password, 12)
