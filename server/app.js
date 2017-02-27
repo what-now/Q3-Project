@@ -29,12 +29,14 @@ app.get('*', function(req, res, next) {
   })
 });
 
-app.use(function(err, req, res, next) {
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err.output : {}
-  console.log(err)
-  res.status(err.status || 500)
-  res.json(err)
+app.use(function handleErrors(err, req, res, next) {
+  const { statusCode, error, message } = err.output.payload
+
+  if (!statusCode) {
+    console.error(err)
+  }
+  res.status(statusCode || 500)
+  res.send(message)
 });
 
 module.exports = app;
