@@ -15,6 +15,9 @@ exports.up = function(knex, Promise) {
     table.text('description')
       .notNullable()
       .defaultTo('');
+    table.enu('location', ['home', 'work', 'anywhere'])
+      .defaultTo('anywhere')
+      .notNullable();
     table.integer('required_time')
       .notNullable();
     table.integer('total_time')
