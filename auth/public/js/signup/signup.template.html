@@ -16,7 +16,7 @@
     <span ng-show="$ctrl.newUserForm.name.$error.minlength">Name must be more than 3 characters.</span>
     <span ng-show="$ctrl.newUserForm.name.$error.maxlength">Name should not exceed 15 characters.</span>
     <div class="form-group">
-      <label for="name">Email</label>
+      <label for="email">Email</label>
       <input
       class="form-control"
       name="email"
@@ -27,33 +27,34 @@
       type="email">
     </div>
     <span ng-show="$ctrl.newUserForm.email.$error.pattern">Invalid Email</span>
+    <span ng-show="$ctrl.emailExists">Email already exists</span>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
+      <label for="password1">Password</label>
       <input
       class="form-control"
       name="password1"
       ng-class="{'has-error': $ctrl.newUserForm.password1.$invalid && $ctrl.newUserForm.password1.$touched, 'has-success': $ctrl.newUserForm.password1.$valid }"
       ng-minlength=8
-      ng-model="$ctrl.user.password"
+      ng-model="$ctrl.user.password1"
       required
       type="password">
     </div>
     <span ng-show="$ctrl.newUserForm.password1.$error.minlength">Password must be more than 8 characters.</span>
     <div class="form-group">
-      <label for="exampleInputPassword1">Confirm Password</label>
+      <label for="password2">Confirm Password</label>
       <input
       class="form-control"
       name="password2"
       ng-class="{'has-error': ($ctrl.newUserForm.password2.$invalid || ($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue)) && $ctrl.newUserForm.password2.$touched, 'has-success': $ctrl.newUserForm.password2.$valid && ($ctrl.newUserForm.password2.$viewValue === $ctrl.newUserForm.password1.$viewValue)}"
       ng-minlength=8
-      ng-model="ctrl.user.password"
+      ng-model="$ctrl.user.password2"
       required
       type="password">
     </div>
     <span ng-show="($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue) && $ctrl.newUserForm.password2.$touched">Passwords do not match.</span>
     <input
       class="btn btn-primary"
-      ng-disabled="$ctrl.newUserForm.$invalid"
+      ng-disabled="$ctrl.newUserForm.$invalid || ($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue)"
       type="submit"
       value="Create New Account">
   </form>
