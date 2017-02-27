@@ -5,13 +5,13 @@ const boom = require('boom');
 const jwt = require('jsonwebtoken');
 
 router.post('/', (req, res, next) => {
-  const { email, password, name } = req.body
+  const { email, name } = req.body
+  const password = req.body.password1;
 
   knex('users').where('email', email).then(arr => {
     if (arr.length) {
       throw boom.create(400, 'Email already exists');
     }
-
     return bcrypt.hash(password, 12)
   }).then(hash => {
     const user = { email, h_pw: hash, name}
@@ -33,7 +33,10 @@ router.post('/', (req, res, next) => {
 
     res.send(registeredUser)
   })
-  .catch((err) => next(err))
+  .catch((err) => {
+    console.log('in user.js: ', err);
+  })
+  // .catch((err) => next(err))
 })
 
 module.exports = router;
