@@ -30,13 +30,13 @@ app.get('*', function(req, res, next) {
 });
 
 app.use(function handleErrors(err, req, res, next) {
-  const { statusCode, error } = err.output.payload
-  
+  const { statusCode, error, message } = err.output.payload
+
   if (!statusCode) {
     console.error(err)
   }
   res.status(statusCode || 500)
-  res.json(error)
+  res.send(message)
 });
 
 module.exports = app;
