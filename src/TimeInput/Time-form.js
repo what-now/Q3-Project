@@ -30,7 +30,7 @@ class TimeForm extends Component {
 
   render() {
     const { submit } = this.props
-    return <form onSubmit={() => submit(this.state)}>
+    return <form onSubmit={(event) => submit(event, this.state)}>
       <FormGroup onChange={this.recalculateTime}>
         <InputGroup bsSize="large" className="TimeForm-input">
           <FormControl type="number" id="hours"/>
@@ -53,7 +53,7 @@ class TimeForm extends Component {
           </ButtonGroup>
         </ButtonGroup>
       </FormGroup>
-      <Button itemType block bsSize="large" bsStyle="primary">Submit</Button>
+      <Button type="submit" block bsSize="large" bsStyle="primary">Submit</Button>
     </form>
   }
 }
