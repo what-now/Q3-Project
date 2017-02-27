@@ -5,7 +5,7 @@
   signupService.$inject = ['$http']
   function signupService($http) {
     this.signup = function(data) {
-      return $http.post('/api/user/', data).catch(err => console.error(err))
+      return $http.post('/api/user/', data)
     }
   }
 })();

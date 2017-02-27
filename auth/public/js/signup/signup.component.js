@@ -9,7 +9,12 @@
 
     signup(event) {
       event.preventDefault();
-      this.signupService.signup(this.user).then(() => window.location = '/')
+      this.signupService.signup(this.user).then(() => window.location = '/').catch((err) => {
+        if (err.data === 'Email already exists') {
+          this.emailExists = true;
+        }
+        console.log('in signup:', err);
+      });
     }
   }
 
