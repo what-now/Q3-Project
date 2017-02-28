@@ -39,4 +39,9 @@ router.post('/', (req, res, next) => {
   .catch(err => next(err));
 });
 
+router.delete('/', (req, res) => {
+  res.clearCookie('token');
+  res.end();
+});
+
 module.exports = router;

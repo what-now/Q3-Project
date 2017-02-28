@@ -59,16 +59,18 @@ class TimeInput extends Component {
   }
 
   render() {
-    return <div className="container-fluid TimeInput">
-      <div className="TimeInput-QuestionContainer">
+    return (
+      <div className="container-fluid TimeInput">
+        <div className="TimeInput-QuestionContainer">
           <h3 className="h2">How much time do you have right now?</h3>
+        </div>
+        <TimeForm submit={this.submit}/>
+        {this.state.filtered.length
+          ? <TaskModal tasks={this.state.filtered} />
+          : null
+        }
       </div>
-      <TimeForm submit={this.submit}/>
-      {this.state.filtered.length
-        ? <TaskModal tasks={this.state.filtered} />
-        : null
-      }
-    </div>
+    )
   }
 
   componentWillMount() {
