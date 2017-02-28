@@ -23,6 +23,9 @@ exports.up = function(knex, Promise) {
     table.integer('total_time')
       .defaultTo(0)
       .notNullable();
+    table.boolean('dividable')
+      .notNullable()
+      .defaultTo(false);
     table.integer('priority')
       .notNullable();
     table.timestamp('completed_at').defaultTo(null);
