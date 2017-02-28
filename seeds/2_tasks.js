@@ -100,7 +100,7 @@ exports.seed = function(knex, Promise) {
         description: 'https://www.youtube.com/watch?v=u1ZB_rGFyeU',
         location: 'anywhere',
         required_time: 5,
-        total_time: 40,
+        total_time: 0,
         dividable: false,
         priority: 1,
         created_at: new Date('2017-01-15 14:26:16 UTC'),
