@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {browserHistory} from 'react-router'
 import './TimeInput.css'
 import TimeForm from './Time-form.js'
 import TaskModal from '../TaskSelect/Task-modal'
@@ -18,6 +19,7 @@ class TimeInput extends Component {
 
   submit(event, obj) {
     event.preventDefault()
+    console.log(obj);
     this.setState({filtered: [{
       id: 1,
       user_id: 1,
@@ -27,8 +29,8 @@ class TimeInput extends Component {
       required_time: 60,
       total_time: 30,
       priority: 1,
-      created_at: new Date('2016-06-29 14:26:16 UTC'),
-      updated_at: new Date('2016-06-29 14:26:16 UTC'),
+      created_at: new Date('2017-02-25 14:26:16 UTC'),
+      updated_at: new Date('2017-02-25 14:26:16 UTC'),
       completed_at: null
     },{
       id: 1,
@@ -72,7 +74,9 @@ class TimeInput extends Component {
   }
 
   componentWillMount() {
-    // redirect to dashboard if tasks.length < 1
+    // if (this.props.tasks.length < 1) {
+    //   browserHistory.push('dashboard')
+    // }
   }
 }
 

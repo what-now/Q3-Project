@@ -1,10 +1,12 @@
 import React from 'react'
+import {ProgressBar} from 'react-bootstrap'
 
-// content of task modal. called by task-modal
+// component for each task item, mapped. called by progress.
 
-export default function TaskDisplay({ task }) {
+export default function TaskProgress({ task }) {
   return <div>
-    <h4>{task.title}</h4>
+    <h4>{`${task.title} • ${task.total_time}min/${task.required_time}min`}</h4>
     <p>{task.description}</p>
+    <ProgressBar now={task.total_time / task.required_time * 100} />
   </div>
 }
