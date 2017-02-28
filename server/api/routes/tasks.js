@@ -30,6 +30,7 @@ router.get('/', auth, (req, res, next) => {
     return knex('tasks').where('user_id', id).then(arr => {
       arr.map(obj => {
         obj.sessions = sessions[obj.id] || []
+        obj.total_time = obj.sessions.reduce((sum, ssn) => sum + ssn.duration, 0)
         return obj
       })
 

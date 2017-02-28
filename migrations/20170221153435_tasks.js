@@ -20,9 +20,6 @@ exports.up = function(knex, Promise) {
       .notNullable();
     table.integer('required_time')
       .notNullable();
-    table.integer('total_time')
-      .defaultTo(0)
-      .notNullable();
     table.boolean('dividable')
       .notNullable()
       .defaultTo(false);
