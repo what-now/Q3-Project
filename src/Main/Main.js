@@ -40,7 +40,7 @@ class Main extends Component {
 
   render() {
     const { tasks, sessions, user, loading } = this.state
-
+    
     return (
       <div>
         <Navbar collapseOnSelect staticTop>

@@ -18,9 +18,29 @@ router.get('/', auth, (req, res, next) => {
   const id = req.claim.id
 
   knex('sessions').innerJoin('tasks', 'sessions.task_id', 'tasks.id')
-  .where('tasks.user_id', id).then(arr => {
+  .where('tasks.user_id', id).select('sessions.id', 'sessions.duration', 'sessions.finished', 'feedback', 'sessions.task_id', 'tasks.title').then(arr => {
     res.send(arr)
   })
+})
+
+router.post('/', auth, (req, res, next) => {
+
+})
+
+router.patch('/:id', auth, (req, res, next) => {
+  const id = req.params.id
+
+  knex('sessions').where('id', id).then(arr => {
+    const current = arr[0]
+
+    const update = {
+      finished: req.body.finished || current.finished,
+      feedback: req.body.feedback || current.feedback
+    }
+
+    return knex('sessions').where('id', id).update(update, '*')
+  }).then(arr => res.send(arr[0]))
+
 })
 
 module.exports = router;

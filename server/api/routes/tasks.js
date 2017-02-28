@@ -17,8 +17,24 @@ const auth = function (req, res, next) {
 router.get('/', auth, (req, res, next) => {
   const id = req.claim.id
 
-  knex('tasks').where('user_id', id).then(arr => {
-    res.send(arr)
+  const sessions = {}
+
+  knex('tasks').innerJoin('sessions', 'tasks.id', 'sessions.task_id')
+  .where('tasks.user_id', id).select('sessions.id', 'task_id', 'duration').then(arr => {
+    arr.reduce((acc, obj) => {
+      acc[obj.task_id] = acc[obj.task_id] || []
+      acc[obj.task_id].push(obj)
+      return acc
+    }, sessions)
+
+    return knex('tasks').where('user_id', id).then(arr => {
+      arr.map(obj => {
+        obj.sessions = sessions[obj.id] || []
+        return obj
+      })
+
+      res.send(arr)
+    })
   })
 })
 
