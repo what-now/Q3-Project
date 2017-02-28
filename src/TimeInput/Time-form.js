@@ -17,9 +17,7 @@ class TimeForm extends Component {
   }
 
   recalculateTime() {
-    const hours = document.getElementById('hours').value
-    const minutes = document.getElementById('minutes').value
-
+    const { hours, minutes } = this.props;
     const time = +hours * 60 + +minutes
     this.setState({ time })
   }
@@ -29,13 +27,25 @@ class TimeForm extends Component {
   }
 
   render() {
-    const { submit } = this.props
+    const { submit, handleChange, hours, minutes } = this.props
     return <form onSubmit={(event) => submit(event, this.state)}>
       <FormGroup onChange={this.recalculateTime}>
         <InputGroup bsSize="large" className="TimeForm-input">
-          <FormControl type="number" id="hours"/>
+          <FormControl
+            type="number"
+            id="hours"
+            name="hours"
+            value={hours}
+            onChange={handleChange}
+          />
           <InputGroup.Addon>hrs.</InputGroup.Addon>
-          <FormControl type="number" id="minutes"/>
+          <FormControl
+            type="number"
+            id="minutes"
+            name="minutes"
+            onChange={handleChange}
+            value={minutes}
+          />
           <InputGroup.Addon>min.</InputGroup.Addon>
         </InputGroup>
       </FormGroup>

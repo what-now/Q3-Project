@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {browserHistory} from 'react-router'
+// import {browserHistory} from 'react-router'
 import './TimeInput.css'
 import TimeForm from './Time-form.js'
 import TaskModal from '../TaskSelect/Task-modal'
@@ -11,11 +11,27 @@ class TimeInput extends Component {
     super(props)
 
     this.state = {
+      hours: '',
+      minutes: '',
       filtered: [],
       time: 0
     }
 
     this.submit = this.submit.bind(this)
+    this.reset = this.reset.bind(this)
+    this.handleChange= this.handleChange.bind(this)
+  }
+
+  reset() {
+    this.setState({
+      filtered: [],
+      hours: '',
+      minutes: ''
+    });
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   submit(event, obj) {
@@ -36,9 +52,14 @@ class TimeInput extends Component {
       <div className="TimeInput-QuestionContainer">
         <h3 className="h2">How much time do you have right now?</h3>
       </div>
-      <TimeForm submit={this.submit}/>
+      <TimeForm
+        submit={this.submit}
+        handleChange={this.handleChange}
+        hours={this.state.hours}
+        minutes={this.state.minutes}
+      />
       {this.state.filtered.length
-        ? <TaskModal tasks={this.state.filtered} time={this.state.time}/>
+        ? <TaskModal tasks={this.state.filtered} time={this.state.time} reset={this.reset}/>
         : null
       }
     </div>

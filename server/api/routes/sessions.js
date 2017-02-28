@@ -24,7 +24,13 @@ router.get('/', auth, (req, res, next) => {
 })
 
 router.post('/', auth, (req, res, next) => {
+  const { task_id, duration, finished } = req.body;
+  const session = { task_id, duration, finished };
 
+  knex('sessions')
+    .insert(session, '*')
+    .then((arr) => res.send(arr[0]))
+    .catch((err) => next(err))
 })
 
 router.patch('/:id', auth, (req, res, next) => {
@@ -40,7 +46,6 @@ router.patch('/:id', auth, (req, res, next) => {
 
     return knex('sessions').where('id', id).update(update, '*')
   }).then(arr => res.send(arr[0]))
-
 })
 
 module.exports = router;

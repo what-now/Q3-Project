@@ -46,8 +46,7 @@ router.post('/', auth, (req, res, next) => {
 
   knex('tasks').insert(task, '*').then(arr => {
     res.send(arr[0])
-  })
-
+  });
 
 })
 
