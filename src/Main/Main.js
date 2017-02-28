@@ -9,6 +9,7 @@ class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: {},
       tasks: [],
       sessions: []
     }
@@ -22,21 +23,16 @@ class Main extends Component {
 
   handleLogout() {
     request.delete('/api/token').then(() => {
-      // this.setState({
-      //   tasks: [],
-      //   sessions: []
-      // });
       window.location.href = '/';
-      // browserHistory.push('/');
     }).catch((err) => console.log(err));
   }
 
   render() {
-    const { tasks, sessions } = this.state
+    const { tasks, sessions, user } = this.state
 
     return (
       <div>
-        <Navbar collapseOnSelect>
+        <Navbar collapseOnSelect staticTop>
           <Navbar.Header>
             <Navbar.Brand>
               APP TITLE GOES HERE
@@ -44,25 +40,22 @@ class Main extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Navbar.Text>Welcome</Navbar.Text>
-            <Nav>
-              <NavItem eventKey={1} href="/dashboard" onClick={this.handleClick}>Dashboard</NavItem>
-              <NavItem eventKey={2} href="/logout" onClick={this.handleLogout}>Logout</NavItem>
+            <Navbar.Text>Welcome, {user.name}</Navbar.Text>
+            <Nav bsStyle="pills">
+              <NavItem href="/dashboard" onClick={this.handleClick}>Dashboard</NavItem>
+              <NavItem href="/logout" onClick={this.handleLogout}>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        { React.cloneElement(this.props.children, {tasks, sessions}) }
+        { React.cloneElement(this.props.children, {tasks, sessions, user}) }
       </div>
     )
   }
 
   componentDidMount() {
-    request.get('/api/tasks').then(({data}) => {
-      this.setState({ tasks: data })
-    })
-    request.get('/api/sessions').then(({data}) => {
-      this.setState({ sessions: data })
-    })
+    request.get('/api/user').then(({data}) => this.setState({ user: data }))
+    request.get('/api/tasks').then(({data}) => this.setState({ tasks: data }))
+    request.get('/api/sessions').then(({data}) => this.setState({ sessions: data }))
   }
 }
 

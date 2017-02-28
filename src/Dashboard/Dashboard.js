@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
   render() {
     return <div className="container-fluid">
-      <PageHeader>Dashboard</PageHeader>
+      <PageHeader>Dashboard <small>{this.props.user.email}</small></PageHeader>
       {/* {
         this.state.current
         ? <OnGoing sessions={this.state.current} />
