@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {PageHeader} from 'react-bootstrap'
+import {PageHeader, Alert} from 'react-bootstrap'
 import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 
@@ -28,7 +28,7 @@ class Dashboard extends Component {
           <h4>Progress</h4>
           <Progress tasks={this.props.tasks}/>
         </div>
-        : <p className="text-center h4">No tasks saved. Please add new tasks.</p>
+        : <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
       }
       <FormToggle/>
     </div>
