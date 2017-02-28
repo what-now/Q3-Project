@@ -21,7 +21,7 @@ app.use('/api', require('./api/api'));
 
 const jwt = require('jsonwebtoken');
 
-app.get('*', function(req, res, next) {
+app.get('*', function(req, res) {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err) => {
     err
     ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})

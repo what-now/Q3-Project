@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {PageHeader} from 'react-bootstrap'
 import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 
@@ -15,7 +16,7 @@ class Dashboard extends Component {
 
   render() {
     return <div className="container-fluid">
-      <h4>Progress</h4>
+      <PageHeader>Dashboard</PageHeader>
       {/* {
         this.state.current
         ? <OnGoing sessions={this.state.current} />
@@ -23,8 +24,11 @@ class Dashboard extends Component {
       } */}
       {
         this.props.tasks.length
-        ? <Progress tasks={this.props.tasks}/>
-        : null
+        ? <div>
+          <h4>Progress</h4>
+          <Progress tasks={this.props.tasks}/>
+        </div>
+        : <p className="text-center h4">No tasks saved. Please add new tasks.</p>
       }
       <FormToggle/>
     </div>
