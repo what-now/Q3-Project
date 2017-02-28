@@ -12,12 +12,17 @@ router.post('/', (req, res, next) => {
     if (arr.length) {
       throw boom.badRequest('Email already exists');
     }
+
     return bcrypt.hash(password, 12)
+
   }).then(hash => {
     const user = { email, h_pw: hash, name}
+
     return knex('users').insert(user, '*')
+
   }).then(arr => {
     const registeredUser = arr[0]
+
     delete registeredUser.h_pw
 
     const claim = { id: registeredUser.id };
@@ -36,7 +41,6 @@ router.post('/', (req, res, next) => {
   .catch((err) => {
     console.log('in user.js: ', err);
   })
-  // .catch((err) => next(err))
 })
 
 module.exports = router;

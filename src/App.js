@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { Navbar, Nav, NavItem } from 'react-bootstrap'
+// import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import './App.css';
 import Main from './Main/Main'
 import Dashboard from './Dashboard/Dashboard'
@@ -9,7 +9,7 @@ import TimeInput from './TimeInput/Time-input'
 class App extends Component {
   render() {
     return <div>
-      <Navbar collapseOnSelect>
+      {/* <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             APP TITLE GOES HERE
@@ -22,7 +22,7 @@ class App extends Component {
             <NavItem>Dashboard</NavItem>
           </Nav>
         </Navbar.Collapse>
-      </Navbar>
+      </Navbar> */}
 
       <Router history={browserHistory}>
         <Route path="/" component={Main}>
