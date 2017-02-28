@@ -20,7 +20,7 @@ class TimeForm extends Component {
     const hours = document.getElementById('hours').value
     const minutes = document.getElementById('minutes').value
 
-    const time = hours * 60 + minutes
+    const time = +hours * 60 + +minutes
     this.setState({ time })
   }
 

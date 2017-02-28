@@ -4,6 +4,26 @@ const bcrypt = require('bcrypt');
 const boom = require('boom');
 const jwt = require('jsonwebtoken');
 
+const auth = function (req, res, next) {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+    if (err) {
+      return next(err);
+    }
+
+    req.claim = payload;
+
+    next();
+  });
+};
+
+router.get('/', auth, (req, res) => {
+  const { id } = req.claim
+
+  knex('users').where('id', id).then(arr => {
+    res.send(arr[0])
+  })
+})
+
 router.post('/', (req, res, next) => {
   const { email, name } = req.body
   const password = req.body.password1;

@@ -1,10 +1,10 @@
 import React from 'react'
-import { FormGroup, ControlLabel, FormControl, InputGroup, Button, Col, Row } from 'react-bootstrap'
+import { FormGroup, ControlLabel, FormControl, InputGroup, Button, Checkbox, Col, Row } from 'react-bootstrap'
 import RadioGroup from './Radio-group'
 
 // form for tasks inside the modal, called by form toggle as newtaskform
 
-export default function TaskForm ({ change, submit, setTime, task }) {
+export default function TaskForm ({ change, checkbox, submit, setTime, task }) {
   const radioOptionsLocation = [
     { string: 'Home', value: 'home' },
     { string: 'Work', value: 'work' },
@@ -33,7 +33,7 @@ export default function TaskForm ({ change, submit, setTime, task }) {
       </Col>
     </Row>
     <Row>
-      <Col xs={7}>
+      <Col xs={6}>
         <FormGroup>
           <ControlLabel>Estimated time required</ControlLabel>
           <InputGroup onChange={() => setTime(document.getElementById('hrs').value, document.getElementById('min').value)}>
@@ -42,6 +42,12 @@ export default function TaskForm ({ change, submit, setTime, task }) {
             <FormControl type="number" id="min"/>
             <InputGroup.Addon>min.</InputGroup.Addon>
           </InputGroup>
+        </FormGroup>
+      </Col>
+      <Col xs={6}>
+        <FormGroup>
+          <ControlLabel>Dividable task?</ControlLabel>
+          <Checkbox checked={task.dividable} onChange={(e) => checkbox(e, 'dividable')}>Use multiple sessions if necessary</Checkbox>
         </FormGroup>
       </Col>
     </Row>

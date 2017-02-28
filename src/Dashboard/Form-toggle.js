@@ -13,17 +13,24 @@ class FormToggle extends Component {
       description:'',
       required_time: 0,
       location: '',
-      priority: 1
+      priority: 1,
+      dividable: true
     } }
     this.toggleForm = this.toggleForm.bind(this)
     this.submitTask = this.submitTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.recalculateTime = this.recalculateTime.bind(this)
+    this.handleCheckbox = this.handleCheckbox.bind(this)
   }
 
   recalculateTime(hrs, min) {
     const value = +hrs * 60 + +min
     this.handleChange({target: { value }}, 'required_time')
+  }
+
+  handleCheckbox(event, field) {
+    const task = {...this.state.task, [field]: event.target.checked}
+    this.setState({ task })
   }
 
   handleChange(event, field) {
@@ -55,7 +62,7 @@ class FormToggle extends Component {
           <Modal.Title>New Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <NewTaskForm submit={this.submitTask} change={this.handleChange} setTime={this.recalculateTime} task={this.state.task}/>
+          <NewTaskForm submit={this.submitTask} change={this.handleChange} setTime={this.recalculateTime} task={this.state.task} checkbox={this.handleCheckbox}/>
         </Modal.Body>
       </Modal>
     </div>

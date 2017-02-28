@@ -11,7 +11,8 @@ class TimeInput extends Component {
     super(props)
 
     this.state = {
-      filtered: []
+      filtered: [],
+      time: 0
     }
 
     this.submit = this.submit.bind(this)
@@ -56,23 +57,21 @@ class TimeInput extends Component {
       created_at: new Date('2016-06-29 14:26:16 UTC'),
       updated_at: new Date('2016-06-29 14:26:16 UTC'),
       completed_at: null
-    }]})
+    }], time: obj.time })
     // filter from this.props.tasks, set to state as filtered.
   }
 
   render() {
-    return (
-      <div className="container-fluid TimeInput">
-        <div className="TimeInput-QuestionContainer">
-          <h3 className="h2">How much time do you have right now?</h3>
-        </div>
-        <TimeForm submit={this.submit}/>
-        {this.state.filtered.length
-          ? <TaskModal tasks={this.state.filtered} />
-          : null
-        }
+    return <div className="container-fluid TimeInput">
+      <div className="TimeInput-QuestionContainer">
+        <h3 className="h2">How much time do you have right now?</h3>
       </div>
-    )
+      <TimeForm submit={this.submit}/>
+      {this.state.filtered.length
+        ? <TaskModal tasks={this.state.filtered} />
+        : null
+      }
+    </div>
   }
 
   componentWillMount() {
