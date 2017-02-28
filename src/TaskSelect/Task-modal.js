@@ -20,7 +20,7 @@ class TaskModal extends Component {
   }
 
   render() {
-    const { tasks } = this.props
+    const { tasks, time } = this.props
     const { index } = this.state
     return <div>
       {
@@ -29,7 +29,7 @@ class TaskModal extends Component {
           <Modal.Header>
             <Modal.Title>Please select your task</Modal.Title>
           </Modal.Header>
-          <Modal.Body><TaskDisplay task={tasks[index]}/></Modal.Body>
+          <Modal.Body><TaskDisplay task={tasks[index]} time={time}/></Modal.Body>
           <Modal.Footer>
             <Pager>
               <Pager.Item previous disabled={index === 0} onClick={() => this.changeIndex(-1)}>Previous</Pager.Item>
