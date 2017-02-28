@@ -11,7 +11,8 @@ class Main extends Component {
     this.state = {
       user: {},
       tasks: [],
-      sessions: []
+      sessions: [],
+      loading: true
     }
 
     this.handleLogout = this.handleLogout.bind(this);
@@ -28,7 +29,7 @@ class Main extends Component {
   }
 
   render() {
-    const { tasks, sessions, user } = this.state
+    const { tasks, sessions, user, loading } = this.state
 
     return (
       <div>
@@ -47,15 +48,24 @@ class Main extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        { React.cloneElement(this.props.children, {tasks, sessions, user}) }
+        { React.cloneElement(this.props.children, {tasks, sessions, user, loading }) }
       </div>
     )
   }
 
   componentDidMount() {
-    request.get('/api/user').then(({data}) => this.setState({ user: data }))
-    request.get('/api/tasks').then(({data}) => this.setState({ tasks: data }))
-    request.get('/api/sessions').then(({data}) => this.setState({ sessions: data }))
+    Promise.all([
+      request.get('/api/user'),
+      request.get('/api/tasks'),
+      request.get('/api/sessions')
+    ]).then(([user, tasks, sessions]) => {
+      this.setState({
+        user: user.data,
+        tasks: tasks.data,
+        sessions: sessions.data,
+        loading: false
+      })
+    })
   }
 }
 

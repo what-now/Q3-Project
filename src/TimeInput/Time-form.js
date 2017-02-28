@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { FormControl, FormGroup, InputGroup, ControlLabel, Button, ButtonGroup } from 'react-bootstrap'
+import { FormControl, FormGroup, InputGroup, ControlLabel, Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 import './Timeform.css'
 
 // form inside the input page, called by time-input
@@ -43,10 +43,10 @@ class TimeForm extends Component {
       <FormGroup className="TimeForm-input">
         <ButtonGroup justified bsSize="large">
           <ButtonGroup>
-            <Button value="home" active={this.state.location === 'home'} onClick={this.handleButtons}>Home</Button>
+            <Button value="home" active={this.state.location === 'home'} onClick={this.handleButtons}><Glyphicon glyph="home"/> Home</Button>
           </ButtonGroup>
           <ButtonGroup>
-            <Button value="work" active={this.state.location === 'work'} onClick={this.handleButtons}>Work</Button>
+            <Button value="work" active={this.state.location === 'work'} onClick={this.handleButtons}><Glyphicon glyph="briefcase"/> Work</Button>
           </ButtonGroup>
           <ButtonGroup>
             <Button value="anywhere" active={this.state.location === 'anywhere'} onClick={this.handleButtons}>Other</Button>

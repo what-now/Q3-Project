@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Modal, Pager, Button } from 'react-bootstrap'
+import { Modal, Pager, Button, Alert } from 'react-bootstrap'
 import TaskDisplay from './Task-display'
 import request from 'axios'
 
@@ -44,7 +44,11 @@ class TaskModal extends Component {
           <Modal.Header>
             <Modal.Title>No tasks available</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Could not retrieve tasks that match your current settings. Please add more tasks or change your settings.</Modal.Body>
+          <Modal.Body>
+            <Alert bsStyle="info">
+              Could not retrieve tasks that match your current settings. Please add more tasks or change your settings.
+            </Alert>
+          </Modal.Body>
           <Modal.Footer>
             <Button>Reset</Button>
             <Button>Go to dashboard</Button>

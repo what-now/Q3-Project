@@ -54,6 +54,58 @@ exports.seed = function(knex, Promise) {
         created_at: new Date('2017-01-15 14:26:16 UTC'),
         updated_at: new Date('2017-01-20 14:26:16 UTC'),
         completed_at: null
+      }, {
+        id: 5,
+        user_id: 2,
+        title: 'read article',
+        description: 'http://www.politico.com/magazine/story/2017/02/data-driven-campaigns-democrats-need-message-214759?cmpid=sf',
+        location: 'anywhere',
+        required_time: 20,
+        total_time: 0,
+        dividable: true,
+        priority: 1,
+        created_at: new Date('2017-01-15 14:26:16 UTC'),
+        updated_at: new Date('2017-01-20 14:26:16 UTC'),
+        completed_at: null
+      }, {
+        id: 6,
+        user_id: 1,
+        title: 'study more react',
+        description: 'checkout this article',
+        location: 'anywhere',
+        required_time: 120,
+        total_time: 80,
+        dividable: true,
+        priority: 3,
+        created_at: new Date('2017-01-15 14:26:16 UTC'),
+        updated_at: new Date('2017-01-20 14:26:16 UTC'),
+        completed_at: null
+      }, {
+        id: 7,
+        user_id: 2,
+        title: 'clean up desk',
+        description: 'no seriously this is a giant mess',
+        location: 'work',
+        required_time: 20,
+        total_time: 0,
+        dividable: true,
+        priority: 2,
+        created_at: new Date('2017-01-15 14:26:16 UTC'),
+        updated_at: new Date('2017-01-20 14:26:16 UTC'),
+        completed_at: null
+      }, {
+        id: 8,
+        user_id: 1,
+        title: 'watch this video',
+        description: 'https://www.youtube.com/watch?v=u1ZB_rGFyeU',
+        location: 'anywhere',
+        required_time: 5,
+        total_time: 40,
+        dividable: false,
+        priority: 1,
+        created_at: new Date('2017-01-15 14:26:16 UTC'),
+        updated_at: new Date('2017-01-20 14:26:16 UTC'),
+        completed_at: null
       }]);
     })
     .then(() => {
