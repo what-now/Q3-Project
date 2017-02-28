@@ -16,6 +16,8 @@ class Main extends Component {
     }
 
     this.handleLogout = this.handleLogout.bind(this);
+    this.refreshTasks = this.refreshTasks.bind(this);
+    this.refreshSessions = this.refreshSessions.bind(this);
   }
 
   handleClick() {
@@ -26,6 +28,14 @@ class Main extends Component {
     request.delete('/api/token').then(() => {
       window.location.href = '/';
     }).catch((err) => console.log(err));
+  }
+
+  refreshTasks() {
+    request.get('/api/tasks').then(({data}) => this.setState({tasks: data}))
+  }
+
+  refreshSessions() {
+    request.get('/api/sessions').then(({data}) => this.setState({sessions: data}))
   }
 
   render() {
@@ -48,7 +58,14 @@ class Main extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        { React.cloneElement(this.props.children, {tasks, sessions, user, loading }) }
+        { React.cloneElement(this.props.children, {
+          tasks,
+          sessions,
+          user,
+          loading,
+          refreshTasks: this.refreshTasks,
+          refreshSessions: this.refreshSessions
+        }) }
       </div>
     )
   }
