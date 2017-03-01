@@ -15,6 +15,7 @@ class TimeInput extends Component {
       minutes: '',
       location: '',
       filtered: [],
+      index: 0,
       time: 0
     }
 
@@ -22,6 +23,8 @@ class TimeInput extends Component {
     this.reset = this.reset.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleButtons = this.handleButtons.bind(this)
+    this.del = this.del.bind(this)
+    this.changeIndex = this.changeIndex.bind(this)
   }
 
   reset() {
@@ -40,8 +43,14 @@ class TimeInput extends Component {
     this.setState({ location: target.value })
   }
 
+  changeIndex(increment) {
+    this.setState({ index: this.state.index + increment })
+  }
+
   submit(event) {
-    event.preventDefault()
+    if (event) {
+      event.preventDefault()
+    }
 
     const { location, hours, minutes } = this.state
     const time = +hours * 60 + +minutes
@@ -55,8 +64,20 @@ class TimeInput extends Component {
     this.setState({ filtered, time })
   }
 
+  del() {
+    let index = this.state.index;
+    const filtered = [...this.state.filtered];
+    filtered.splice(index, 1);
+
+    if (index === this.state.filtered.length - 1) {
+      index -= 1;
+    }
+
+    this.setState({ filtered, index })
+  }
+
   render() {
-    const { hours, minutes, location } = this.state
+    const { hours, minutes, location, time, index, filtered } = this.state
     return <div className="container-fluid TimeInput">
       <div className="TimeInput-QuestionContainer">
         <h3 className="h2">How much time do you have right now?</h3>
@@ -70,7 +91,7 @@ class TimeInput extends Component {
         location={location}
       />
       {this.state.filtered.length
-        ? <TaskModal refreshTasks={this.props.refreshTasks} tasks={this.state.filtered} time={this.state.time} reset={this.reset}/>
+        ? <TaskModal refreshTasks={this.props.refreshTasks} index={index} tasks={filtered} time={time} reset={this.reset} del={this.del} changeIndex={this.changeIndex}/>
         : null
       }
     </div>

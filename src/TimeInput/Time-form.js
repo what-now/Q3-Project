@@ -4,7 +4,7 @@ import './Timeform.css'
 
 // form inside the input page, called by time-input
 
-export default function TimeForm({ submit, handleChange, handleButtons, hours, minutes }) {
+export default function TimeForm({ submit, location, handleChange, handleButtons, hours, minutes }) {
   return <form onSubmit={submit}>
     <FormGroup>
       <InputGroup bsSize="large" className="TimeForm-input">

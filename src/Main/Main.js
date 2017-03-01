@@ -12,7 +12,8 @@ class Main extends Component {
       user: {},
       tasks: [],
       sessions: [],
-      loading: true
+      loading: true,
+      updating: false
     }
 
     this.handleLogout = this.handleLogout.bind(this);
@@ -31,11 +32,13 @@ class Main extends Component {
   }
 
   refreshTasks() {
-    request.get('/api/tasks').then(({data}) => this.setState({tasks: data}))
+    this.setState({updating: true})
+    request.get('/api/tasks').then(({data}) => this.setState({tasks: data, updating: false }))
   }
 
   refreshSessions() {
-    request.get('/api/sessions').then(({data}) => this.setState({sessions: data}))
+    this.setState({updating: true})
+    request.get('/api/sessions').then(({data}) => this.setState({sessions: data, updating: false }))
   }
 
   render() {

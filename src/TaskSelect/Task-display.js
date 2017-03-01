@@ -5,11 +5,14 @@ import request from 'axios'
 
 // component for each task item, mapped. called by progress & task-modal
 
-export default function TaskProgress({ task, time, refreshTasks }) {
+export default function TaskDisplay({ task, time, refreshTasks, del }) {
   const remaining = task.required_time - task.total_time;
   const render = remaining > (time || 0) ? (time || 0) : remaining;
 
   const deleteTask = function() {
+    if (del) {
+      del(task.id)
+    }
     request.delete(`/api/tasks/${task.id}`).then(() => {
       refreshTasks();
     })
@@ -50,7 +53,7 @@ export default function TaskProgress({ task, time, refreshTasks }) {
         </Col>
         <Col xs={4} className="buttonDiv">
           <Button bsStyle="primary" bsSize="small" onClick={() => editTask()}>Edit</Button>
-          <Button bsStyle="primary" bsSize="small" onClick={() => deleteTask()}>Delete</Button>
+          <Button bsStyle="primary" bsSize="small" onClick={ deleteTask}>Delete</Button>
         </Col>
       </Row>
       <Row>
