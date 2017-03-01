@@ -26,7 +26,7 @@ class TaskModal extends Component {
     const taskToPost = this.props.tasks[this.state.index]
     const id = taskToPost.id
 
-    const duration = taskToPost.required_time - taskToPost.total_time > this.props.time ? this. props.time : taskToPost.required_time - taskToPost.total_time
+    const duration = taskToPost.required_time - taskToPost.total_time > this.props.time ? this.props.time : taskToPost.required_time - taskToPost.total_time
 
     request.post('/api/sessions', { task_id: id, duration, finished: false }).then((res) => {
       this.props.reset();
