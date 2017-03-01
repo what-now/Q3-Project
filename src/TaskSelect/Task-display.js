@@ -2,10 +2,11 @@ import React from 'react'
 import {Button, Col, ProgressBar, Row} from 'react-bootstrap'
 import './Task-Display.css'
 import request from 'axios'
+import AutoLinkText from 'react-autolink-text'
 
 // component for each task item, mapped. called by progress & task-modal
 
-export default function TaskProgress({ task, time, refreshTasks }) {
+export default function TaskProgress({ task, time, refreshTasks, sessions }) {
   const remaining = task.required_time - task.total_time;
   const render = remaining > (time || 0) ? (time || 0) : remaining;
 
@@ -27,21 +28,7 @@ export default function TaskProgress({ task, time, refreshTasks }) {
       return "taskProgressDiv"
     }
   }
-
-  const findUrls = function() {
-    const regEx = /(?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*/g
-    let description = task.description
-    const urls = description.match(regEx)
-    let newString = ''
-    if (urls) {
-      for (const url of urls) {
-        newString = description.replace(url, `<a href="${url}" target="_blank">${url}</a>`)
-        description = newString;
-      }
-    }
-    return newString;
-  }
-
+  console.log(sessions);
   return (
     <div className={styleActive()}>
       <Row className="show-grid">
@@ -55,9 +42,7 @@ export default function TaskProgress({ task, time, refreshTasks }) {
       </Row>
       <Row>
         <Col xs={12}>
-          {/* <p>this is a string <a href="https://www.w3schools.com" target="_blank">Visit W3Schools.com!</a></p> */}
-          <p>{findUrls()}</p>
-          {/* <p>{task.description}</p> */}
+          <AutoLinkText text={task.description} />
         </Col>
       </Row>
       <Row>

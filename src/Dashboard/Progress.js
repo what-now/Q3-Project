@@ -4,11 +4,11 @@ import TaskProgress from '../TaskSelect/Task-display'
 
 // wrapper for progress list group. Called by dashboard conditionally if tasks.length > 0
 
-export default function Progress({ tasks, refreshTasks }) {
+export default function Progress({ tasks, refreshTasks, sessions }) {
   return (
     <ListGroup>
       {tasks.map(obj => <ListGroupItem key={obj.id} className={obj.sessions.length ? "taskProgressDiv" : ''}>
-        <TaskProgress task={obj} refreshTasks={refreshTasks}/>
+        <TaskProgress task={obj} refreshTasks={refreshTasks} sessions={sessions}/>
       </ListGroupItem>)}
     </ListGroup>
   )

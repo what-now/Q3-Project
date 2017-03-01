@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {PageHeader, Alert} from 'react-bootstrap'
+import {PageHeader, Alert, Button} from 'react-bootstrap'
 import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 import Completed from './Completed'
@@ -13,14 +13,17 @@ class Dashboard extends Component {
     this.state = {
       formVisible: false
     }
+
+    this.toggleTaskModal = this.toggleTaskModal.bind(this)
   }
 
-  toggleForm() {
+  toggleTaskModal(taskObj) {
+    console.log(taskObj);
     this.setState({ formVisible: !this.state.formVisible })
   }
 
   render() {
-    const { user, tasks, refreshTasks } = this.props;
+    const { user, tasks, refreshTasks, sessions } = this.props;
     return <div className="container-fluid">
       <PageHeader>Dashboard <small>{user.email}</small></PageHeader>
       {/* {
@@ -32,12 +35,12 @@ class Dashboard extends Component {
         tasks.length
         ? <div>
           <h4>Progress</h4>
-          <Progress tasks={tasks} refreshTasks={refreshTasks}/>
+          <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions}/>
         </div>
         : <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
       }
-
-      { <FormToggle refreshTasks={refreshTasks}/> }
+      { <Button bsStyle="primary" onClick={() => this.toggleTaskModal({})}>Add new task</Button> }
+      { <FormToggle refreshTasks={refreshTasks} formVisible={this.state.formVisible} toggleTaskModal={this.toggleTaskModal} /> }
       { <Completed tasks={this.props.tasks.filter(obj => obj.completed_at)} /> }
     </div>
   }

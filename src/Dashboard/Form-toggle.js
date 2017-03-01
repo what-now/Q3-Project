@@ -8,15 +8,18 @@ import request from 'axios'
 class FormToggle extends Component {
   constructor(props) {
     super(props)
-    this.state = { formVisible: false, task:{
-      title:'',
-      description:'',
-      required_time: 0,
-      location: '',
-      priority: 1,
-      dividable: true
-    } }
-    this.toggleForm = this.toggleForm.bind(this)
+    this.state = {
+      // formVisible: false,
+      task:{
+        title:'',
+        description:'',
+        required_time: 0,
+        location: '',
+        priority: 1,
+        dividable: true
+      }
+    }
+    // this.toggleForm = this.toggleForm.bind(this)
     this.submitTask = this.submitTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.recalculateTime = this.recalculateTime.bind(this)
@@ -38,19 +41,23 @@ class FormToggle extends Component {
     this.setState({ task })
   }
 
-  toggleForm() {
-    this.setState({ formVisible: !this.state.formVisible })
-  }
+  // toggleForm() {
+  //   this.setState({ formVisible: !this.state.formVisible })
+  // }
 
   submitTask() {
+    this.props.toggleTaskModal
     request.post('/api/tasks', this.state.task).then(res => {
-      this.setState({ formVisible: false, task:{
-        title:'',
-        description:'',
-        estimated_time: 0,
-        location: '',
-        priority: 1
-      } })
+      this.setState({
+        // formVisible: false,
+        task:{
+          title:'',
+          description:'',
+          estimated_time: 0,
+          location: '',
+          priority: 1
+        }
+      })
       this.props.refreshTasks();
     })
   }
@@ -58,15 +65,15 @@ class FormToggle extends Component {
   render() {
     return (
       <div>
-        <Button bsStyle="primary" onClick={this.toggleForm}>Add new task</Button>
-        `<Modal show={this.state.formVisible} onHide={this.toggleForm}>
+        {/* <Button bsStyle="primary" onClick={this.toggleForm}>Add new task</Button> */}
+        <Modal show={this.props.formVisible} onHide={this.props.toggleTaskModal}>
           <Modal.Header>
             <Modal.Title>New Task</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <NewTaskForm submit={this.submitTask} change={this.handleChange} setTime={this.recalculateTime} task={this.state.task} checkbox={this.handleCheckbox}/>
           </Modal.Body>
-        </Modal>`
+        </Modal>
       </div>
     )
   }
