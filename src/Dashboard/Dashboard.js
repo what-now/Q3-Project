@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {PageHeader, Alert, Button} from 'react-bootstrap'
+import {PageHeader, Alert, Row, Col, Button} from 'react-bootstrap'
 import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 import Completed from './Completed'
@@ -26,6 +26,7 @@ class Dashboard extends Component {
     const { user, tasks, refreshTasks, sessions } = this.props;
     return <div className="container-fluid">
       <PageHeader>Dashboard <small>{user.email}</small></PageHeader>
+      <FormToggle refreshTasks={refreshTasks}/>
       {/* {
         this.state.current
         ? <OnGoing sessions={this.state.current} />
@@ -37,7 +38,11 @@ class Dashboard extends Component {
           <h4>Progress</h4>
           <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions}/>
         </div>
-        : <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
+        : <Row>
+          <Col xs={12}>
+            <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
+          </Col>
+        </Row>
       }
       { <Button bsStyle="primary" onClick={() => this.toggleTaskModal({})}>Add new task</Button> }
       { <FormToggle refreshTasks={refreshTasks} formVisible={this.state.formVisible} toggleTaskModal={this.toggleTaskModal} /> }

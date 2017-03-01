@@ -10,20 +10,11 @@ class TaskModal extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      index: 0
-    }
-
-    this.changeIndex = this.changeIndex.bind(this)
     this.postSession = this.postSession.bind(this)
   }
 
-  changeIndex(increment) {
-    this.setState({ index: this.state.index + increment })
-  }
-
   postSession() {
-    const taskToPost = this.props.tasks[this.state.index]
+    const taskToPost = this.props.tasks[this.props.index]
     const id = taskToPost.id
 
     const duration = taskToPost.required_time - taskToPost.total_time > this.props.time ? this.props.time : taskToPost.required_time - taskToPost.total_time
@@ -35,9 +26,12 @@ class TaskModal extends Component {
     });
   }
 
+  del() {
+
+  }
+
   render() {
-    const { tasks, time, reset, refreshTasks } = this.props
-    const { index } = this.state
+    const { tasks, time, reset, index, refreshTasks, changeIndex, del } = this.props
     return <div>
       {
         tasks.length
@@ -45,13 +39,15 @@ class TaskModal extends Component {
           <Modal.Header>
             <Modal.Title>Please select your task</Modal.Title>
           </Modal.Header>
-          <Modal.Body><TaskDisplay task={tasks[index]} time={time} refreshTasks={refreshTasks}/></Modal.Body>
+          <Modal.Body>
+            <TaskDisplay task={tasks[index]} time={time} del={del} refreshTasks={refreshTasks}/>
+          </Modal.Body>
           <Modal.Footer>
             <Pager>
-              <Pager.Item previous disabled={index === 0} onClick={() => this.changeIndex(-1)}>Previous</Pager.Item>
+              <Pager.Item previous disabled={index === 0} onClick={() => changeIndex(-1)}>Previous</Pager.Item>
               <Button bsStyle="default" onClick={() => reset()}>Reset</Button>
               <Button bsStyle="primary" onClick={() => this.postSession()}>Select</Button>
-              <Pager.Item next disabled={index === tasks.length - 1} onClick={() => this.changeIndex(1)}>Next</Pager.Item>
+              <Pager.Item next disabled={index === tasks.length - 1} onClick={() => changeIndex(1)}>Next</Pager.Item>
             </Pager>
           </Modal.Footer>
         </Modal>
