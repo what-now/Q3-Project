@@ -5,9 +5,12 @@ import TaskProgress from '../TaskSelect/Task-display'
 // wrapper for progress list group. Called by dashboard conditionally if tasks.length > 0
 
 export default function Progress({ tasks }) {
-  return <ListGroup>
-    {tasks.map(obj => <ListGroupItem key={obj.id}>
-      <TaskProgress task={obj}/>
-    </ListGroupItem>)}
-  </ListGroup>
+  return <div>
+    <h4>Progress</h4>
+    <ListGroup>
+      {tasks.map(obj => <ListGroupItem key={obj.id}>
+        <TaskProgress task={obj}/>
+      </ListGroupItem>)}
+    </ListGroup>
+  </div>
 }
