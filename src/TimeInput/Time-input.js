@@ -13,13 +13,15 @@ class TimeInput extends Component {
     this.state = {
       hours: '',
       minutes: '',
+      location: '',
       filtered: [],
       time: 0
     }
 
     this.submit = this.submit.bind(this)
     this.reset = this.reset.bind(this)
-    this.handleChange= this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleButtons = this.handleButtons.bind(this)
   }
 
   reset() {
@@ -34,20 +36,28 @@ class TimeInput extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  submit(event, obj) {
+  handleButtons({ target }) {
+    this.setState({ location: target.value })
+  }
+
+  submit(event) {
     event.preventDefault()
 
-    const { location, time } = obj
+    const { location, hours, minutes } = this.state
+    const time = +hours * 60 + +minutes
+
     const { tasks } = this.props
 
+    console.log(location, time);
     const filtered = tasks.filter(task =>
       (task.location === location || task.location === 'anywhere') && (task.dividable || task.required_time <= time)
     ).sort((task1, task2) => task2.priority - task1.priority)
 
-    this.setState({ filtered , time: obj.time })
+    this.setState({ filtered, time })
   }
 
   render() {
+    const { hours, minutes, location } = this.state
     return <div className="container-fluid TimeInput">
       <div className="TimeInput-QuestionContainer">
         <h3 className="h2">How much time do you have right now?</h3>
@@ -55,11 +65,13 @@ class TimeInput extends Component {
       <TimeForm
         submit={this.submit}
         handleChange={this.handleChange}
-        hours={this.state.hours}
-        minutes={this.state.minutes}
+        handleButtons={this.handleButtons}
+        hours={hours}
+        minutes={minutes}
+        location={location}
       />
       {this.state.filtered.length
-        ? <TaskModal tasks={this.state.filtered} time={this.state.time} reset={this.reset}/>
+        ? <TaskModal refreshTasks={this.props.refreshTasks} tasks={this.state.filtered} time={this.state.time} reset={this.reset}/>
         : null
       }
     </div>
