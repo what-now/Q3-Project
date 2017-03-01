@@ -6,3 +6,7 @@ button {
   display: flex;
   justify-content: flex-end;
 }
+
+.taskProgressDiv {
+  background-color: #c3d7f7;
+}

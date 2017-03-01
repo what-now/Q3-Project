@@ -48,7 +48,6 @@ class TimeInput extends Component {
 
     const { tasks } = this.props
 
-    console.log(location, time);
     const filtered = tasks.filter(task =>
       (task.location === location || task.location === 'anywhere') && (task.dividable || task.required_time <= time)
     ).sort((task1, task2) => task2.priority - task1.priority)

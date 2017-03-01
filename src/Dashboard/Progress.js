@@ -7,7 +7,7 @@ import TaskProgress from '../TaskSelect/Task-display'
 export default function Progress({ tasks, refreshTasks }) {
   return (
     <ListGroup>
-      {tasks.map(obj => <ListGroupItem key={obj.id}>
+      {tasks.map(obj => <ListGroupItem key={obj.id} className={obj.sessions.length ? "taskProgressDiv" : ''}>
         <TaskProgress task={obj} refreshTasks={refreshTasks}/>
       </ListGroupItem>)}
     </ListGroup>

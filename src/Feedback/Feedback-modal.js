@@ -56,7 +56,11 @@ class FeedbackModal extends Component {
       obj.finished = true
     }
 
-    request.patch(`/api/sessions/${this.props.session.id}`, obj).then(() => this.props.refreshSessions())
+    request.patch(`/api/sessions/${this.props.session.id}`, obj).then((res) => {
+      console.log('in session patch response: ', res.data);
+      this.props.refreshSessions()
+    })
+
   }
 
   render() {

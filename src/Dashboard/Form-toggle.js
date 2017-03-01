@@ -51,21 +51,24 @@ class FormToggle extends Component {
         location: '',
         priority: 1
       } })
+      this.props.refreshTasks();
     })
   }
 
   render() {
-    return <div>
-      <Button bsStyle="primary" onClick={this.toggleForm}>Add new task</Button>
-      <Modal show={this.state.formVisible} onHide={this.toggleForm}>
-        <Modal.Header>
-          <Modal.Title>New Task</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <NewTaskForm submit={this.submitTask} change={this.handleChange} setTime={this.recalculateTime} task={this.state.task} checkbox={this.handleCheckbox}/>
-        </Modal.Body>
-      </Modal>
-    </div>
+    return (
+      <div>
+        <Button bsStyle="primary" onClick={this.toggleForm}>Add new task</Button>
+        `<Modal show={this.state.formVisible} onHide={this.toggleForm}>
+          <Modal.Header>
+            <Modal.Title>New Task</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <NewTaskForm submit={this.submitTask} change={this.handleChange} setTime={this.recalculateTime} task={this.state.task} checkbox={this.handleCheckbox}/>
+          </Modal.Body>
+        </Modal>`
+      </div>
+    )
   }
 
 }

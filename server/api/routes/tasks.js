@@ -21,7 +21,7 @@ router.get('/', auth, (req, res, next) => {
   const sessions = {};
 
   knex('tasks').innerJoin('sessions', 'tasks.id', 'sessions.task_id')
-  .where('tasks.user_id', id).select('sessions.id', 'task_id', 'duration').then(arr => {
+  .where('tasks.user_id', id).select('sessions.id', 'task_id', 'duration', 'sessions.created_at').then(arr => {
     arr.reduce((acc, obj) => {
       acc[obj.task_id] = acc[obj.task_id] || [];
       acc[obj.task_id].push(obj);

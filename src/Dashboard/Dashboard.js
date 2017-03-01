@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {PageHeader, Alert} from 'react-bootstrap'
 import Progress from './Progress'
-// import FormToggle from  './Form-toggle'
+import FormToggle from  './Form-toggle'
 import Completed from './Completed'
 
 // main component for Dashboard. Called by Main.
@@ -11,8 +11,12 @@ class Dashboard extends Component {
     super(props)
 
     this.state = {
-
+      formVisible: false
     }
+  }
+
+  toggleForm() {
+    this.setState({ formVisible: !this.state.formVisible })
   }
 
   render() {
@@ -32,9 +36,9 @@ class Dashboard extends Component {
         </div>
         : <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
       }
-      {
-        <Completed tasks={this.props.tasks.filter(obj => obj.completed_at)}/>
-      }
+
+      { <FormToggle refreshTasks={refreshTasks}/> }
+      { <Completed tasks={this.props.tasks.filter(obj => obj.completed_at)} /> }
     </div>
   }
 

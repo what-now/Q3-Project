@@ -18,20 +18,46 @@ export default function TaskProgress({ task, time, refreshTasks }) {
     });
   }
 
+  const editTask = function() {
+    alert('testing');
+  }
+
+  const styleActive = function() {
+    if (task.sessions.length) {
+      return "taskProgressDiv"
+    }
+  }
+
+  const findUrls = function() {
+    const regEx = /(?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*/g
+    let description = task.description
+    const urls = description.match(regEx)
+    let newString = ''
+    if (urls) {
+      for (const url of urls) {
+        newString = description.replace(url, `<a href="${url}" target="_blank">${url}</a>`)
+        description = newString;
+      }
+    }
+    return newString;
+  }
+
   return (
-    <div>
+    <div className={styleActive()}>
       <Row className="show-grid">
         <Col xs={8}>
           <h4>{task.title} • {task.total_time}min/{task.required_time}min</h4>
         </Col>
         <Col xs={4} className="buttonDiv">
-          <Button bsStyle="primary" bsSize="small">Edit</Button>
+          <Button bsStyle="primary" bsSize="small" onClick={() => editTask()}>Edit</Button>
           <Button bsStyle="primary" bsSize="small" onClick={() => deleteTask()}>Delete</Button>
         </Col>
       </Row>
       <Row>
         <Col xs={12}>
-          <p>{task.description}</p>
+          {/* <p>this is a string <a href="https://www.w3schools.com" target="_blank">Visit W3Schools.com!</a></p> */}
+          <p>{findUrls()}</p>
+          {/* <p>{task.description}</p> */}
         </Col>
       </Row>
       <Row>
@@ -44,14 +70,5 @@ export default function TaskProgress({ task, time, refreshTasks }) {
         </Col>
       </Row>
     </div>
-    // <div>
-    //   <h4>{task.title} • {task.total_time}min/{task.required_time}min</h4>
-    //   <p>{task.description}</p>
-    //   <ProgressBar>
-    //     <ProgressBar now={task.total_time / task.required_time * 100} />
-    //     <ProgressBar active now={render / task.required_time * 100}/>
-    //   </ProgressBar>
-    //   <p>Estimated remaining: {remaining}min.</p>
-    // </div>
   )
 }
