@@ -15,7 +15,7 @@ class TaskModal extends Component {
 
 
   postSession() {
-    const taskToPost = this.props.tasks[this.state.index]
+    const taskToPost = this.props.tasks[this.props.index]
     const id = taskToPost.id
 
     const duration = taskToPost.required_time - taskToPost.total_time > this.props.time ? this.props.time : taskToPost.required_time - taskToPost.total_time
