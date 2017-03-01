@@ -42,9 +42,9 @@ router.get('/', auth, (req, res, next) => {
 
 router.post('/', auth, (req, res, next) => {
   const user_id = req.claim.id;
-  const { title, description, required_time, location, priority } = req.body;
+  const { title, description, required_time, location, priority, dividable } = req.body;
 
-  const task = { user_id, title, description, required_time, location, priority };
+  const task = { user_id, title, description, dividable, required_time, location, priority };
 
   knex('tasks').insert(task, '*').then(arr => {
     res.send(arr[0]);

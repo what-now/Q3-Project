@@ -53,9 +53,10 @@ class FormToggle extends Component {
         task:{
           title:'',
           description:'',
-          estimated_time: 0,
+          required_time: 0,
           location: '',
-          priority: 1
+          priority: 1,
+          dividable: true
         }
       })
       this.props.refreshTasks();
