@@ -41,7 +41,7 @@ export default class TaskPreview extends Component {
 
   componentDidMount() {
     const requestPromises = this.props.links.map(url => request.post(`/api/preview/`, {url}))
-    
+
     Promise.all(requestPromises).then(arr => {
       const data = arr.map(arr => arr.data)
       console.log(data);
