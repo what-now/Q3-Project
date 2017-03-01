@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken')
 const knex = require('../../knex');
+const boom = require('boom');
 
 const auth = function (req, res, next) {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
@@ -64,6 +65,18 @@ router.patch('/:id', auth, (req, res, next) => {
   }).then(arr => {
     res.send(arr[0])
   })
+});
+
+router.delete('/:id', auth, (req, res, next) => {
+  knex('tasks')
+    .del('*')
+    .where('id', req.params.id)
+    .then((arr) => {
+      res.end();
+    })
+    // .catch((err) => {
+    //   console.log('what the hell!');
+    // })
 });
 
 module.exports = router;
