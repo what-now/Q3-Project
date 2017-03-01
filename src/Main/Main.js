@@ -20,8 +20,8 @@ class Main extends Component {
     this.refreshSessions = this.refreshSessions.bind(this);
   }
 
-  handleClick() {
-    browserHistory.push('dashboard');
+  handleClick(str) {
+    browserHistory.push(str);
   }
 
   handleLogout() {
@@ -40,7 +40,7 @@ class Main extends Component {
 
   render() {
     const { tasks, sessions, user, loading } = this.state
-    
+
     return (
       <div>
         <Navbar collapseOnSelect staticTop>
@@ -53,7 +53,8 @@ class Main extends Component {
           <Navbar.Collapse>
             <Navbar.Text>Welcome, {user.name}</Navbar.Text>
             <Nav bsStyle="pills">
-              <NavItem href="/dashboard" onClick={this.handleClick}>Dashboard</NavItem>
+              <NavItem href="/dashboard" onClick={() => this.handleClick('dashboard')}>Dashboard</NavItem>
+              <NavItem href="/new-session" onClick={() => this.handleClick('new-session')}>New session</NavItem>
               <NavItem href="/logout" onClick={this.handleLogout}>Logout</NavItem>
             </Nav>
           </Navbar.Collapse>
