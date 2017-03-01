@@ -10,7 +10,7 @@ export default function App() {
   return <Router history={browserHistory}>
       <Route path="/" component={Main}>
         <IndexRoute component={Landing} />
-        <Route path="input" component={TimeInput}/>
+        <Route path="new-session" component={TimeInput}/>
         <Route path="dashboard" component={Dashboard}/>
       </Route>
     </Router>
