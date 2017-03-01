@@ -2,7 +2,7 @@ import React from 'react'
 import { FormControl, ControlLabel, FormGroup, InputGroup, Button, Row, Col } from 'react-bootstrap'
 
 export default function AdditionalTime({ updateTime, submit, time }) {
-  return <form onSubmit={submit}>
+  return <form onSubmit={(event) => submit(event)}>
     <Row>
       <Col xsPush={9} xs={3}>
         <FormGroup>
@@ -12,7 +12,7 @@ export default function AdditionalTime({ updateTime, submit, time }) {
             <InputGroup.Addon>min</InputGroup.Addon>
           </InputGroup>
         </FormGroup>
-        <Button block bsStyle="primary">Add Time</Button>
+        <Button block type="submit" bsStyle="primary">Add Time</Button>
       </Col>
     </Row>
   </form>

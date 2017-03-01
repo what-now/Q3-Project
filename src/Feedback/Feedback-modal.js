@@ -16,6 +16,8 @@ class FeedbackModal extends Component {
     this.showInput = this.showInput.bind(this)
     this.updateTime = this.updateTime.bind(this)
     this.feedback = this.feedback.bind(this)
+    this.complete = this.complete.bind(this)
+    this.addTime = this.addTime.bind(this)
   }
 
   showInput() {
@@ -26,14 +28,21 @@ class FeedbackModal extends Component {
     this.setState({ additionalTime: { inputVisible: true, time: event.target.value} })
   }
 
-  addTime() {
+  addTime(event) {
+    event.preventDefault()
 
+    const obj = { required_time: this.state.additionalTime.time }
+    console.log(obj);
+
+    request.patch(`/api/tasks/${this.props.session.task_id}`, obj).then(() => this.props.refreshTasks())
+
+    this.feedback()
   }
 
   complete() {
-    const obj = {}
+    const obj = { completed_at: new Date() }
 
-    request.patch(`/api/tasks/${this.props.session.task_id}`, obj)
+    request.patch(`/api/tasks/${this.props.session.task_id}`, obj).then(() => this.props.refreshTasks())
 
     this.feedback(true)
   }
