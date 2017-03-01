@@ -3,6 +3,7 @@ import { Modal, Pager, Button, Alert } from 'react-bootstrap'
 import TaskDisplay from './Task-display'
 import { browserHistory } from 'react-router'
 import request from 'axios'
+import TaskPreview from './Task-link-preview'
 
 // Modals as result of user input. called by time-input
 
@@ -11,7 +12,8 @@ class TaskModal extends Component {
     super(props)
 
     this.state = {
-      index: 0
+      index: 0,
+      links: null
     }
 
     this.changeIndex = this.changeIndex.bind(this)
@@ -26,15 +28,20 @@ class TaskModal extends Component {
     const taskToPost = this.props.tasks[this.state.index]
     const id = taskToPost.id
 
+    const links = taskToPost.description.match(/https?:\/\/.+\S/g)
+    this.setState({ links })
+
     request.post('/api/sessions', { task_id: id, duration: this.props.time, finished: false }).then((res) => {
-      this.props.reset();
-      browserHistory.push('dashboard');
+      if (!links) {
+        this.props.reset();
+        browserHistory.push('dashboard');
+      }
     });
   }
 
   render() {
     const { tasks, time, reset } = this.props
-    const { index } = this.state
+    const { index, links } = this.state
     return <div>
       {
         tasks.length
@@ -66,6 +73,9 @@ class TaskModal extends Component {
             <Button>Go to dashboard</Button>
           </Modal.Footer>
         </Modal>
+      }
+      {
+        this.state.links ? <TaskPreview reset={reset} links={links}/> : null
       }
     </div>
   }
