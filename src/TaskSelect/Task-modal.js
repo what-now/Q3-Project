@@ -15,7 +15,6 @@ class TaskModal extends Component {
     this.postSession = this.postSession.bind(this)
   }
 
-
   postSession() {
     const taskToPost = this.props.tasks[this.props.index]
     const id = taskToPost.id
