@@ -27,8 +27,6 @@ app.get('*', function(req, res) {
     ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})
     : res.sendFile('index.html', {root: path.join(__dirname, '..', 'build')})
   })
-
-
 });
 
 app.use(function handleErrors(err, req, res, next) {
