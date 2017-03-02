@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 const app = express();
+const knex = require('./knex');
 
 app.use(
   require('morgan')('dev'),
