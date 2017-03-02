@@ -23,10 +23,10 @@ app.use('/api', require('./api/api'));
 const jwt = require('jsonwebtoken');
 
 app.get('*', function(req, res) {
-  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, {id}) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
     err
     ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})
-    : knex('users').where('id', id).then(arr => {
+    : knex('users').where('id', payload.id).then(arr => {
       arr.length
         ? res.sendFile('index.html', {root: path.join(__dirname, '..', 'build')})
         : res.clearCookie('token').sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})
