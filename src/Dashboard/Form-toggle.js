@@ -46,7 +46,7 @@ class FormToggle extends Component {
   // }
 
   submitTask() {
-    this.props.toggleTaskModal
+    this.props.toggleTaskModal()
     request.post('/api/tasks', this.state.task).then(res => {
       this.setState({
         // formVisible: false,
@@ -68,7 +68,7 @@ class FormToggle extends Component {
       <div>
         {/* <Button bsStyle="primary" onClick={this.toggleForm}>Add new task</Button> */}
         <Modal show={this.props.formVisible} onHide={this.props.toggleTaskModal}>
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>New Task</Modal.Title>
           </Modal.Header>
           <Modal.Body>
