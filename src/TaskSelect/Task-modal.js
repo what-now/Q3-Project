@@ -21,6 +21,7 @@ class TaskModal extends Component {
 
     request.post('/api/sessions', { task_id: id, duration, finished: false }).then((res) => {
       this.props.reset();
+      this.props.refreshSessions();
       this.props.refreshTasks();
       browserHistory.push('dashboard');
     });

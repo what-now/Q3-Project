@@ -18,7 +18,7 @@ router.get('/', auth, (req, res, next) => {
   const id = req.claim.id
 
   knex('sessions').innerJoin('tasks', 'sessions.task_id', 'tasks.id')
-  .where('tasks.user_id', id).select('sessions.id', 'sessions.duration', 'sessions.finished', 'feedback', 'sessions.task_id', 'tasks.title').then(arr => {
+  .where('tasks.user_id', id).select('sessions.id', 'sessions.duration', 'sessions.finished', 'feedback', 'sessions.task_id', 'tasks.title', 'sessions.created_at').then(arr => {
     res.send(arr)
   })
 })

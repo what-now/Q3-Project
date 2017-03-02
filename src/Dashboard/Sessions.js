@@ -7,7 +7,7 @@ class Sessions extends Component {
     super(props);
 
     this.state = {
-      currentSessions: []
+      currentSessions: [],
     }
   }
 
@@ -15,6 +15,7 @@ class Sessions extends Component {
     this.setState({
       currentSessions: nextProps.sessions
     })
+    console.log(nextProps.sessions);
   }
 
   render() {
@@ -36,19 +37,3 @@ class Sessions extends Component {
 }
 
 export default Sessions;
-// export default function Sessions({ refreshTasks, currentSessions }) {
-//   return (
-//     <div>
-//       <h4>Sessions in Progress</h4>
-//       <ListGroup>
-//         {currentSessions.map(obj => <ListGroupItem key={obj.id}>
-//           <div>
-//             <span className="text-left h4">{obj.title}</span><br/>
-//             {/* <span className="text-right">{moment(obj.completed_at).calendar()}</span> */}
-//           </div>
-//           </ListGroupItem>
-//         )}
-//       </ListGroup>
-//     </div>
-//   )
-// }

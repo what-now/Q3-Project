@@ -38,6 +38,10 @@ class Dashboard extends Component {
     this.handleCheckbox = this.handleCheckbox.bind(this)
   }
 
+  componentWillMount() {
+    this.props.refreshSessions();
+  }
+
   componentWillReceiveProps(nextProps) {
     const allSessions = nextProps.sessions;
     const onGoing = allSessions.filter((obj) => {
@@ -46,8 +50,6 @@ class Dashboard extends Component {
     this.setState({
       currentSessions: onGoing
     })
-    console.log('currentSessions', onGoing);
-    console.log('next Props', nextProps.sessions);
   }
 
   toggleTaskModal(taskObj) {

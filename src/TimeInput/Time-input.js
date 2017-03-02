@@ -91,7 +91,7 @@ class TimeInput extends Component {
         location={location}
       />
       {this.state.filtered.length
-        ? <TaskModal refreshTasks={this.props.refreshTasks} index={index} tasks={filtered} time={time} reset={this.reset} del={this.del} changeIndex={this.changeIndex}/>
+        ? <TaskModal refreshTasks={this.props.refreshTasks} index={index} tasks={filtered} time={time} reset={this.reset} del={this.del} changeIndex={this.changeIndex} refreshSessions={this.props.refreshSessions}/>
         : null
       }
     </div>
