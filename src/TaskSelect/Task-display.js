@@ -6,7 +6,7 @@ import AutoLinkText from 'react-autolink-text'
 
 // component for each task item, mapped. called by progress & task-modal
 
-export default function TaskDisplay({ task, time, refreshTasks, del, sessions }) {
+export default function TaskDisplay({ task, time, refreshTasks, del, sessions, toggleTaskModal }) {
   const remaining = task.required_time - task.total_time;
   const render = remaining > (time || 0) ? (time || 0) : remaining;
 
@@ -31,7 +31,7 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions })
       return "taskProgressDiv"
     }
   }
-  console.log(sessions);
+  
   return (
     <div className={styleActive()}>
       <Row className="show-grid">
@@ -39,7 +39,7 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions })
           <h4>{task.title} • {task.total_time}min/{task.required_time}min</h4>
         </Col>
         <Col xs={4} className="buttonDiv">
-          <Button bsStyle="primary" bsSize="small" onClick={() => editTask()}>Edit</Button>
+          <Button bsStyle="primary" bsSize="small" onClick={() => toggleTaskModal(task)}>Edit</Button>
           <Button bsStyle="primary" bsSize="small" onClick={ deleteTask}>Delete</Button>
         </Col>
       </Row>
