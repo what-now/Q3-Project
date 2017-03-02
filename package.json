@@ -35,6 +35,11 @@
     "start": "react-scripts start & nodemon server/bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "nf": "nf start",
+    "nodemon": "nodemon ./server/bin/www.js"
+  },
+  "engines": {
+    "node": "7.6.0"
   }
 }
