@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormGroup, ControlLabel, FormControl, InputGroup, Button, Checkbox, Col, Row } from 'react-bootstrap'
+import {browserHistory} from 'react-router'
 import RadioGroup from './Radio-group'
 
 // form for tasks inside the modal, called by form toggle as newtaskform
@@ -19,6 +20,7 @@ export default function TaskForm ({ change, checkbox, submit, setTime, task, mod
   return <form onSubmit={(event) => {
     event.preventDefault()
     submit()
+    browserHistory.push('dashboard');
   }}>
     <Row>
       <Col xs={12}>
