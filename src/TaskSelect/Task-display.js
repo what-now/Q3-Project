@@ -31,7 +31,6 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions })
       return "taskProgressDiv"
     }
   }
-  console.log(sessions);
   return (
     <div className={styleActive()}>
       <Row className="show-grid">
