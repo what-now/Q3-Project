@@ -14,6 +14,6 @@ export default function Landing({ user, tasks, sessions, loading, refreshTasks, 
     return <FeedbackModal refreshTasks={refreshTasks} refreshSessions={refreshSessions} session={feedback[0]}/>
   }
   return tasks.length
-    ? <TimeInput user={user} tasks={tasks} sessions={sessions} refreshTasks={refreshTasks}/>
-    : <Dashboard user={user} tasks={tasks} sessions={sessions} />
+    ? <TimeInput user={user} tasks={tasks} sessions={sessions} refreshTasks={refreshTasks} refreshSessions={refreshSessions}/>
+    : <Dashboard user={user} tasks={tasks} sessions={sessions} refreshTasks={refreshTasks} refreshSessions={refreshSessions}/>
 }
