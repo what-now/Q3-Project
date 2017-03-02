@@ -7,7 +7,6 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 const app = express();
-const knex = require('./knex');
 
 app.use(
   require('morgan')('dev'),
@@ -23,14 +22,10 @@ app.use('/api', require('./api/api'));
 const jwt = require('jsonwebtoken');
 
 app.get('*', function(req, res) {
-  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err) => {
     err
     ? res.sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})
-    : knex('users').where('id', payload.id).then(arr => {
-      arr.length
-        ? res.sendFile('index.html', {root: path.join(__dirname, '..', 'build')})
-        : res.clearCookie('token').sendFile('index.html', {root: path.resolve(__dirname, '..', 'auth', 'public')})
-    })
+    : res.sendFile('index.html', {root: path.join(__dirname, '..', 'build')})
   })
 
 
