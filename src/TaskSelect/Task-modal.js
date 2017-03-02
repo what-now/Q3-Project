@@ -3,12 +3,14 @@ import { Modal, Pager, Button, Alert } from 'react-bootstrap'
 import TaskDisplay from './Task-display'
 import { browserHistory } from 'react-router'
 import request from 'axios'
+import TaskPreview from './Task-link-preview'
 
 // Modals as result of user input. called by time-input
 
 class TaskModal extends Component {
   constructor(props) {
     super(props)
+    this.state = { links: null }
 
     this.postSession = this.postSession.bind(this)
   }
@@ -19,11 +21,16 @@ class TaskModal extends Component {
 
     const duration = taskToPost.required_time - taskToPost.total_time > this.props.time ? this.props.time : taskToPost.required_time - taskToPost.total_time
 
+    const links = taskToPost.description.match(/https?:\/\/.+\S/g)
+    this.setState({ links })
+
     request.post('/api/sessions', { task_id: id, duration, finished: false }).then((res) => {
-      this.props.reset();
-      this.props.refreshSessions();
-      this.props.refreshTasks();
-      browserHistory.push('dashboard');
+      if (!links) {
+        this.props.reset();
+        this.props.refreshSessions();
+        this.props.refreshTasks();
+        browserHistory.push('dashboard');
+      }
     });
   }
 
@@ -33,6 +40,8 @@ class TaskModal extends Component {
 
   render() {
     const { tasks, time, reset, index, refreshTasks, changeIndex, del } = this.props
+    const { links } = this.state
+
     return <div>
       {
         tasks.length
@@ -66,6 +75,9 @@ class TaskModal extends Component {
             <Button>Go to dashboard</Button>
           </Modal.Footer>
         </Modal>
+      }
+      {
+        this.state.links ? <TaskPreview reset={reset} links={links}/> : null
       }
     </div>
   }
