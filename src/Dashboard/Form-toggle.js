@@ -11,7 +11,7 @@ class FormToggle extends Component {
     return (
       <div>
         <Modal show={this.props.modalVisible} onHide={this.props.toggleTaskModal}>
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>New Task</Modal.Title>
           </Modal.Header>
           <Modal.Body>
