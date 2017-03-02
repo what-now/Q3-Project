@@ -43,8 +43,9 @@ router.get('/', auth, (req, res, next) => {
 router.post('/', auth, (req, res, next) => {
   const user_id = req.claim.id;
   const { title, description, required_time, location, priority, dividable } = req.body;
-
   const task = { user_id, title, description, dividable, required_time, location, priority };
+
+  console.log('in tasks post');
 
   knex('tasks').insert(task, '*').then(arr => {
     res.send(arr[0]);
@@ -65,6 +66,19 @@ router.patch('/:id', auth, (req, res, next) => {
   }).then(arr => {
     res.send(arr[0])
   })
+});
+
+router.patch('/edit/:id', auth, (req, res, next) => {
+  const id = req.params.id;
+  const { title, description, required_time, location, priority, dividable } = req.body;
+  const updated = { title, description, required_time, location, priority, dividable };
+
+  knex('tasks')
+    .where('id', id)
+    .update(updated, '*')
+    .then((arr) => {
+      res.send(arr[0])
+    })
 });
 
 router.delete('/:id', auth, (req, res, next) => {

@@ -22,16 +22,12 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions, t
     });
   }
 
-  const editTask = function() {
-    alert('testing');
-  }
-
   const styleActive = function() {
     if (task.sessions.length) {
       return "taskProgressDiv"
     }
   }
-  
+
   return (
     <div className={styleActive()}>
       <Row className="show-grid">

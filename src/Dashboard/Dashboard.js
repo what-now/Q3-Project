@@ -13,15 +13,22 @@ class Dashboard extends Component {
 
     this.state = {
       modalVisible: false,
+      modalInfo: {
+        title: '',
+        btnName: '',
+        route: '',
+        taskId: null
+      },
       task: {
         title:'',
         description:'',
         required_time: 0,
         location: '',
         priority: 1,
-        dividable: true
+        dividable: true,
       }
     }
+
     this.toggleTaskModal = this.toggleTaskModal.bind(this)
     this.submitTask = this.submitTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -40,20 +47,32 @@ class Dashboard extends Component {
     if (isEmpty) {
       this.setState({
         modalVisible: !this.state.modalVisible,
+        modalInfo: {
+          title: 'New Task',
+          btnName: 'Add Task',
+          route: 'post',
+          taskId: null
+        },
         task: {
           title:'',
           description:'',
           required_time: 0,
           location: '',
           priority: 1,
-          dividable: true
+          dividable: true,
         }
       });
     } else {
-      const { title, description, required_time, location, priority, dividable } = taskObj;
+      const { title, description, required_time, location, priority, dividable, id } = taskObj;
       this.setState({
         modalVisible: !this.state.modalVisible,
-        task: { title, description, required_time, location, priority, dividable }
+        modalInfo: {
+          title: 'Edit Task',
+          btnName: 'Submit',
+          route: 'patch',
+          taskId: id
+        },
+        task: { title, description, required_time, location, priority, dividable, id }
       });
     }
   }
@@ -75,27 +94,42 @@ class Dashboard extends Component {
   }
 
   submitTask() {
-    request.post('/api/tasks', this.state.task).then(res => {
-      this.setState({
-        // modalVisible: false,
-        task:{
-          title:'',
-          description:'',
-          estimated_time: 0,
-          location: '',
-          priority: 1
-        }
+    if (this.state.modalInfo.route === 'post') {
+      request.post(`/api/tasks`, this.state.task).then((res) => {
+        this.setState({
+          modalVisible: false,
+          task:{
+            title:'',
+            description:'',
+            estimated_time: 0,
+            location: '',
+            priority: 1,
+          }
+        })
       })
-      this.toggleTaskModal();
-      this.props.refreshTasks();
-    })
+    } else {
+      request.patch(`/api/tasks/edit/${this.state.modalInfo.taskId}`, this.state.task).then((res) => {
+        this.setState({
+          modalVisible: false,
+          task:{
+            title:'',
+            description:'',
+            estimated_time: 0,
+            location: '',
+            priority: 1,
+          }
+        })
+      })
+    }
+
+    this.props.refreshTasks();
   }
 
   render() {
     const { user, tasks, refreshTasks, sessions } = this.props;
     return <div className="container-fluid">
       <PageHeader>Dashboard <small>{user.email}</small></PageHeader>
-      <FormToggle refreshTasks={refreshTasks}/>
+      {/* <FormToggle refreshTasks={refreshTasks} modalInfo={this.state.modalInfo}/> */}
       {/* {
         this.state.current
         ? <OnGoing sessions={this.state.current} />
@@ -105,7 +139,7 @@ class Dashboard extends Component {
         tasks.length
         ? <div>
           <h4>Progress</h4>
-          <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions} toggleTaskModal={this.toggleTaskModal}/>
+          <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions} toggleTaskModal={this.toggleTaskModal} />
         </div>
         : <Row>
           <Col xs={12}>
@@ -121,6 +155,7 @@ class Dashboard extends Component {
           handleCheckbox={this.handleCheckbox}
           task={this.state.task}
           submitTask={this.submitTask}
+          modalInfo={this.state.modalInfo}
         />
       }
       { <Completed tasks={this.props.tasks.filter(obj => obj.completed_at)} /> }

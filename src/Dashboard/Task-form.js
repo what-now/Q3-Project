@@ -4,7 +4,7 @@ import RadioGroup from './Radio-group'
 
 // form for tasks inside the modal, called by form toggle as newtaskform
 
-export default function TaskForm ({ change, checkbox, submit, setTime, task }) {
+export default function TaskForm ({ change, checkbox, submit, setTime, task, modalInfo }) {
   const radioOptionsLocation = [
     { string: 'Home', value: 'home' },
     { string: 'Work', value: 'work' },
@@ -59,6 +59,6 @@ export default function TaskForm ({ change, checkbox, submit, setTime, task }) {
         <RadioGroup options={radioOptionsPriority} stateKey={'priority'} task={task} change={change} label="Priority"/>
       </Col>
     </Row>
-    <Button type="submit" bsStyle="primary">Add New</Button>
+    <Button type="submit" bsStyle="primary">{modalInfo.btnName}</Button>
   </form>
 }
