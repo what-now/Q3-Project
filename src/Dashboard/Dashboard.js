@@ -3,6 +3,7 @@ import {PageHeader, Alert, Row, Col, Button} from 'react-bootstrap'
 import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 import Completed from './Completed'
+import Sessions from './Sessions'
 import request from 'axios'
 
 // main component for Dashboard. Called by Main.
@@ -26,7 +27,8 @@ class Dashboard extends Component {
         location: '',
         priority: 1,
         dividable: true,
-      }
+      },
+      currentSessions: []
     }
 
     this.toggleTaskModal = this.toggleTaskModal.bind(this)
@@ -34,6 +36,18 @@ class Dashboard extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.recalculateTime = this.recalculateTime.bind(this)
     this.handleCheckbox = this.handleCheckbox.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const allSessions = nextProps.sessions;
+    const onGoing = allSessions.filter((obj) => {
+      return !obj.finished
+    })
+    this.setState({
+      currentSessions: onGoing
+    })
+    console.log('currentSessions', onGoing);
+    console.log('next Props', nextProps.sessions);
   }
 
   toggleTaskModal(taskObj) {
@@ -106,6 +120,7 @@ class Dashboard extends Component {
             priority: 1,
           }
         })
+        this.props.refreshTasks();
       })
     } else {
       request.patch(`/api/tasks/edit/${this.state.modalInfo.taskId}`, this.state.task).then((res) => {
@@ -119,22 +134,22 @@ class Dashboard extends Component {
             priority: 1,
           }
         })
+        this.props.refreshTasks();
       })
     }
 
-    this.props.refreshTasks();
   }
 
   render() {
     const { user, tasks, refreshTasks, sessions } = this.props;
     return <div className="container-fluid">
       <PageHeader>Dashboard <small>{user.email}</small></PageHeader>
-      {/* <FormToggle refreshTasks={refreshTasks} modalInfo={this.state.modalInfo}/> */}
       {/* {
         this.state.current
         ? <OnGoing sessions={this.state.current} />
         : null
       } */}
+      <Sessions sessions={this.state.currentSessions} />
       {
         tasks.length
         ? <div>
@@ -147,8 +162,8 @@ class Dashboard extends Component {
           </Col>
         </Row>
       }
-      { <Button bsStyle="primary" onClick={() => this.toggleTaskModal({})}>Add new task</Button> }
-      { <FormToggle
+      <Button bsStyle="primary" onClick={() => this.toggleTaskModal({})}>Add Task</Button>
+      <FormToggle
           refreshTasks={refreshTasks}
           modalVisible={this.state.modalVisible} toggleTaskModal={this.toggleTaskModal} recalculateTime={this.recalculateTime}
           handleChange={this.handleChange}
@@ -157,8 +172,7 @@ class Dashboard extends Component {
           submitTask={this.submitTask}
           modalInfo={this.state.modalInfo}
         />
-      }
-      { <Completed tasks={this.props.tasks.filter(obj => obj.completed_at)} /> }
+      <Completed tasks={this.props.tasks.filter(obj => obj.completed_at)} />
     </div>
   }
 }
