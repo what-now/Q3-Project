@@ -7,9 +7,9 @@ body {
   background-color: #DAD7CD;
 }
 
-/*li {
+li {
   border-radius: 10px;
-}*/
+}
 
 /*button {
   background-color: #596157;
@@ -22,8 +22,8 @@ body {
 
 /*NEW SESSION*/
 
-/*.TimeInput-QuestionContainer {*/
-  /*margin-bottom: 30px;*/
+.TimeInput-QuestionContainer {
+  margin-bottom: 30px;
   /*background-color: #A0AAB2;*/
   /*border: 1px dashed red;*/
-/*}*/
+}
