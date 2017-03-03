@@ -1,12 +1,8 @@
-button {
+.taskDisplayButton {
   margin: 2px;
 }
 
-.buttonDiv {
+.taskDisplayButtonDiv {
   display: flex;
   justify-content: flex-end;
-}
-
-.taskProgressDiv {
-  background-color: #c3d7f7;
 }

@@ -49,7 +49,7 @@ class Main extends Component {
         <Navbar collapseOnSelect staticTop>
           <Navbar.Header>
             <Navbar.Brand>
-              APP TITLE GOES HERE
+              What Now?
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

@@ -1,0 +1,12 @@
+.sessionEndTime {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sessionDelBtn {
+  margin-left: 10px;
+}
+
+.sessionListGroupItem {
+  background-color: #f4c2ba;
+}

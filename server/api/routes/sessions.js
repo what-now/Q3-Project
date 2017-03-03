@@ -46,6 +46,19 @@ router.patch('/:id', auth, (req, res, next) => {
 
     return knex('sessions').where('id', id).update(update, '*')
   }).then(arr => res.send(arr[0]))
-})
+});
+
+//Currently not being used. may use in the future
+// router.delete('/:id', auth, (req, res, next) => {
+//   const id = req.params.id;
+//
+//   knex('sessions')
+//     .del('*')
+//     .where('id', id)
+//     .then((arr) => {
+//       res.send(arr[0]);
+//     })
+//
+// });
 
 module.exports = router;
