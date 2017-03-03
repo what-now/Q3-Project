@@ -27,3 +27,7 @@ body {
 .btn-primary {
   background-color: #596157;
 }
+
+.navbar-default {
+  background-color: #222222;
+}
