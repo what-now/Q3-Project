@@ -4,6 +4,7 @@ import Progress from './Progress'
 import FormToggle from  './Form-toggle'
 import Completed from './Completed'
 import Sessions from './Sessions'
+import moment from 'moment'
 import request from 'axios'
 
 // main component for Dashboard. Called by Main.
@@ -43,13 +44,21 @@ class Dashboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const allSessions = nextProps.sessions;
-    const onGoing = allSessions.filter((obj) => {
-      return !obj.finished
-    })
-    this.setState({
-      currentSessions: onGoing
-    })
+    const {sessions} = nextProps;
+
+    if (sessions.length) {
+      const validSessions = sessions.filter((session) => {
+        const sessionStart = moment(session.created_at);
+        const duration = moment.duration({'minutes': session.duration});
+
+        return (moment(sessionStart).add(duration)).diff(moment()) > 0
+      })
+      this.setState({
+        currentSessions: validSessions
+      });
+    }
+
+
   }
 
   toggleTaskModal(taskObj) {
@@ -92,6 +101,13 @@ class Dashboard extends Component {
       });
     }
   }
+
+  //called from Sessions.js
+  // deleteSession(id) {
+  //   request.delete(`/api/sessions/${id}`).then((res) => {
+  //     console.log(res.data);
+  //   })
+  // }
 
   recalculateTime(hrs, min) {
     const value = +hrs * 60 + +min
@@ -148,9 +164,9 @@ class Dashboard extends Component {
     return <div className="container-fluid">
       <PageHeader>Dashboard <small>{user.email}</small></PageHeader>
       {
-        sessions.length
+        this.state.currentSessions.length
         ?
-        <Sessions sessions={this.state.currentSessions} refreshSessions={refreshSessions}/>
+        <Sessions refreshSessions={refreshSessions} currentSessions={this.state.currentSessions} />
         :
         <Row>
           <Col xs={12}>

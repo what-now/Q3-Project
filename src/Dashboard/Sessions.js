@@ -4,24 +4,12 @@ import moment from 'moment'
 import './Sessions.css'
 
 class Sessions extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentSessions: [],
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      currentSessions: nextProps.sessions
-    })
-  }
 
   getEndTime(session) {
     const sessionStart = moment(session.created_at);
     const duration = moment.duration({'minutes': session.duration});
     const endTime = moment(sessionStart).add(duration).format("h:mma");
+
     return endTime;
   }
 
@@ -30,7 +18,7 @@ class Sessions extends Component {
       <div>
         <h4>Sessions in Progress</h4>
         <ListGroup>
-          {this.state.currentSessions.map(obj =>
+          {this.props.currentSessions.map(obj =>
             <ListGroupItem key={obj.id}>
               <Row>
                 <Col xs={7}>
@@ -38,6 +26,13 @@ class Sessions extends Component {
                 </Col>
                 <Col xs={5} className="sessionEndTime">
                   <span>Session End Time: {this.getEndTime(obj)}</span>
+                  {/* {
+                    this.validateSession(obj) <= 0
+                    ?
+                    <Button className="sessionDelBtn" bsStyle="primary" bsSize="small" onClick={() => this.props.deleteSession(obj.id)}>Delete Session</Button>
+                    :
+                    null
+                  } */}
                 </Col>
               </Row>
             </ListGroupItem>

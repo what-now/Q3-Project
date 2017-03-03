@@ -23,21 +23,15 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions, t
     });
   }
 
-  const styleActive = function() {
-    if (task.sessions.length) {
-      return "taskProgressDiv"
-    }
-  }
-
   return (
-    <div className={styleActive()}>
+    <div>
       <Row className="show-grid">
         <Col xs={8}>
           <h4>{task.title} • {task.total_time}min/{task.required_time}min</h4>
         </Col>
-        <Col xs={4} className="buttonDiv">
-          <Button bsStyle="primary" bsSize="small" onClick={() => toggleTaskModal(task)}>Edit</Button>
-          <Button bsStyle="primary" bsSize="small" onClick={ deleteTask}>Delete</Button>
+        <Col xs={4} className="taskDisplayButtonDiv">
+          <Button className="taskDisplayButton" bsStyle="primary" bsSize="small" onClick={() => toggleTaskModal(task)}>Edit</Button>
+          <Button className="taskDisplayButton" bsStyle="primary" bsSize="small" onClick={deleteTask}>Delete</Button>
         </Col>
       </Row>
       <Row>
