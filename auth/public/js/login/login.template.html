@@ -30,11 +30,14 @@
       required>
       <span ng-show="$ctrl.loginForm.password.$error.minlength && $ctrl.loginForm.password.$touched">Password must be at least 8 characters long.</span>
   </div>
-
-  <input
-    class="btn btn-primary"
-    ng-disabled="$ctrl.loginForm.$invalid"
-    type="submit"
-    value="Log In">
+  <div class="login-button">
+    <input
+      class="btn btn-primary"
+      ng-disabled="$ctrl.loginForm.$invalid"
+      type="submit"
+      value="Log In">
+  </div>
 </form>
-<a ui-sref="signup">New to this app? Sign up here</a>
+<div class="sref-link">
+  <a ui-sref="signup">New to this app? Sign up here</a>
+</div>

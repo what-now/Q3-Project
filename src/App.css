@@ -1,3 +1,29 @@
 .App {
   text-align: center;
 }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #DAD7CD;
+}
+
+/*li {
+  border-radius: 10px;
+}*/
+
+/*button {
+  background-color: #596157;
+}*/
+
+/*nav {
+  color: #9D8189;
+  backgroud-color: #485665;
+}*/
+
+/*NEW SESSION*/
+
+/*.TimeInput-QuestionContainer {*/
+  /*margin-bottom: 30px;*/
+  /*background-color: #A0AAB2;*/
+  /*border: 1px dashed red;*/
+/*}*/

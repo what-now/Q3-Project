@@ -9,3 +9,22 @@
 .has-success {
   border-color: green;
 }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  /*background-color: #F7FFF7;*/
+}
+
+/*.login-button, .sref-link {
+  display: flex;
+  justify-content: center;
+}*/
+
+/*.sref-link {
+  margin-top: 15px;
+}*/
+
+/*.btn-primary {
+  color: #FF6B6B;
+  background-color: #596157;
+}*/
