@@ -6,7 +6,7 @@ import AutoLinkText from 'react-autolink-text'
 
 // component for each task item, mapped. called by progress & task-modal
 
-export default function TaskDisplay({ task, time, refreshTasks, del, sessions, toggleTaskModal }) {
+export default function TaskDisplay({ task, time, refreshTasks, del, sessions, toggleTaskModal, refreshSessions }) {
   const remaining = task.required_time - task.total_time;
   const render = remaining > (time || 0) ? (time || 0) : remaining;
 
@@ -15,6 +15,7 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions, t
       del(task.id)
     }
     request.delete(`/api/tasks/${task.id}`).then(() => {
+      refreshSessions();
       refreshTasks();
     })
     .catch((err) => {

@@ -136,6 +136,7 @@ class Dashboard extends Component {
             priority: 1,
           }
         })
+        this.props.refreshSessions();
         this.props.refreshTasks();
       })
     }
@@ -143,20 +144,25 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { user, tasks, refreshTasks, sessions } = this.props;
+    const { user, tasks, refreshTasks, sessions, refreshSessions } = this.props;
     return <div className="container-fluid">
       <PageHeader>Dashboard <small>{user.email}</small></PageHeader>
-      {/* {
-        this.state.current
-        ? <OnGoing sessions={this.state.current} />
-        : null
-      } */}
-      <Sessions sessions={this.state.currentSessions} />
+      {
+        sessions.length
+        ?
+        <Sessions sessions={this.state.currentSessions} refreshSessions={refreshSessions}/>
+        :
+        <Row>
+          <Col xs={12}>
+            <Alert bsStyle="info">You currently have no ongoing sessions.</Alert>
+          </Col>
+        </Row>
+      }
       {
         tasks.length
         ? <div>
           <h4>Progress</h4>
-          <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions} toggleTaskModal={this.toggleTaskModal} />
+          <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions} toggleTaskModal={this.toggleTaskModal} refreshSessions={refreshSessions} />
         </div>
         : <Row>
           <Col xs={12}>
