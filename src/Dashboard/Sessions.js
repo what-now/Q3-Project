@@ -26,13 +26,6 @@ class Sessions extends Component {
                 </Col>
                 <Col xs={5} className="sessionEndTime">
                   <span>Session End Time: {this.getEndTime(obj)}</span>
-                  {/* {
-                    this.validateSession(obj) <= 0
-                    ?
-                    <Button className="sessionDelBtn" bsStyle="primary" bsSize="small" onClick={() => this.props.deleteSession(obj.id)}>Delete Session</Button>
-                    :
-                    null
-                  } */}
                 </Col>
               </Row>
             </ListGroupItem>
