@@ -6,8 +6,8 @@
 ## Features
   Click screenshot for live version:
 
-  [![WhatNow: Login Screen](/public/images/q3-login.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Time Input](/public/images/q3-time-input.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Task Select](/public/images/q3-task-select.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Dashboard](/public/images/q3-dashboard.png)](https://whatnowapp.herokuapp.com/)
-  
+  [![WhatNow: Time Input](/public/images/q3-time-input.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Task Select](/public/images/q3-task-select.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Dashboard](/public/images/q3-dashboard.png)](https://whatnowapp.herokuapp.com/)
+
 ## Technologies Used
 
   * HTML
