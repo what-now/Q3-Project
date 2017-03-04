@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import request from 'axios'
+import './Main.css'
 
 // 'wrapper' route to pass down state data. Called by App
 
@@ -48,7 +49,7 @@ class Main extends Component {
       <div>
         <Navbar collapseOnSelect staticTop>
           <Navbar.Header>
-            <Navbar.Brand>
+            <Navbar.Brand className="nav-heading">
               What Now?
             </Navbar.Brand>
             <Navbar.Toggle />

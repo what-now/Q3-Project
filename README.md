@@ -1,7 +1,7 @@
-# nowWhat or whatNow
+# WhatNow
 
 ## Description
-
+  WhatNow is an application aimed to help make managing your free time easier. 
 ## Features
 
 ## Technologies Used
@@ -9,9 +9,10 @@
   * HTML
   * CSS
   * JavaScript
-    * ExpressJS
-    * KnexJS
+    * Express.js
+    * Knex.js
     * ReactJS
+    * AngularJS
   * PostgreSQL
 
 ## Future Development

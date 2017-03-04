@@ -13,16 +13,27 @@ li {
 
 .btn-primary {
   background-color: #596157;
+  border-color: #596157;
 }
 
 .navbar-default {
   background-color: #222222;
 }
 
-/*NEW SESSION*/
+.alert {
+  text-align: center;
+  background-color: #d3c6c0;
+  border-color: #B7A196;
+}
 
-.TimeInput-QuestionContainer {
-  margin-bottom: 30px;
-  /*background-color: #A0AAB2;*/
-  /*border: 1px dashed red;*/
+.alert-info {
+  color: #F7F9F9;
+}
+
+.form-control {
+  padding: 3px 5px;
+}
+
+.input-group-lg>.form-control {
+  padding: 3px 5px;
 }

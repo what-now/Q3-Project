@@ -61,6 +61,8 @@ export default function TaskForm ({ change, checkbox, submit, setTime, task, mod
         <RadioGroup options={radioOptionsPriority} stateKey={'priority'} task={task} change={change} label="Priority"/>
       </Col>
     </Row>
-    <Button type="submit" bsStyle="primary">{modalInfo.btnName}</Button>
+    <div className="add-task-button-div">
+      <Button type="submit" bsStyle="primary">{modalInfo.btnName}</Button>
+    </div>
   </form>
 }

@@ -6,6 +6,7 @@ import Completed from './Completed'
 import Sessions from './Sessions'
 import moment from 'moment'
 import request from 'axios'
+import './Dashboard.css'
 
 // main component for Dashboard. Called by Main.
 
@@ -181,12 +182,14 @@ class Dashboard extends Component {
           <Progress tasks={tasks} refreshTasks={refreshTasks} sessions={sessions} toggleTaskModal={this.toggleTaskModal} refreshSessions={refreshSessions} />
         </div>
         : <Row>
-          <Col xs={12}>
-            <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
-          </Col>
-        </Row>
+            <Col xs={12}>
+              <Alert bsStyle="info">No tasks saved. Please add new tasks.</Alert>
+            </Col>
+          </Row>
       }
-      <Button bsStyle="primary" onClick={() => this.toggleTaskModal({})}>Add Task</Button>
+      <div className="add-task-button-div">
+        <Button className="add-task-button" bsStyle="primary" onClick={() => this.toggleTaskModal({})}>Add Task</Button>
+      </div>
       <FormToggle
           refreshTasks={refreshTasks}
           modalVisible={this.state.modalVisible} toggleTaskModal={this.toggleTaskModal} recalculateTime={this.recalculateTime}

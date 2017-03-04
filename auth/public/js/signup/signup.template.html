@@ -1,4 +1,5 @@
-<h3>Sign up</h3>
+<h4>Sign up</h4>
+<hr>
 <div>
   <form name="$ctrl.newUserForm" ng-submit="$ctrl.signup($event)" novalidate>
     <div class="form-group">
@@ -52,11 +53,15 @@
       type="password">
     </div>
     <span ng-show="($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue) && $ctrl.newUserForm.password2.$touched">Passwords do not match.</span>
-    <input
-      class="btn btn-primary"
-      ng-disabled="$ctrl.newUserForm.$invalid || ($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue)"
-      type="submit"
-      value="Create New Account">
+    <div class="login-button">
+      <input
+        class="btn btn-primary"
+        ng-disabled="$ctrl.newUserForm.$invalid || ($ctrl.newUserForm.password2.$viewValue !== $ctrl.newUserForm.password1.$viewValue)"
+        type="submit"
+        value="Create New Account">
+    </div>
   </form>
 </div>
-<a ui-sref="login">Already registered? Log in here</a>
+<div class="sref-link">
+  <a ui-sref="login">Already registered? Log in here</a>
+</div>

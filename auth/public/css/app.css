@@ -12,7 +12,7 @@
 
 body {
   font-family: 'Raleway', sans-serif;
-  /*background-color: #F7FFF7;*/
+  background-color: #DAD7CD;
 }
 
 .login-button, .sref-link {
@@ -26,8 +26,18 @@ body {
 
 .btn-primary {
   background-color: #596157;
+  border-color: #596157;
 }
 
 .navbar-default {
   background-color: #222222;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.form-control {
+  padding: 3px 5px;
 }

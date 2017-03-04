@@ -1,0 +1,8 @@
+.add-task-button {
+  margin-bottom: 15px;
+}
+
+.add-task-button-div {
+  display: flex;
+  justify-content: center;
+}
