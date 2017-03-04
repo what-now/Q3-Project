@@ -27,6 +27,7 @@ body {
 .btn-primary {
   background-color: #596157;
   border-color: #596157;
+  margin-top: 15px;
 }
 
 .navbar-default {
@@ -40,4 +41,13 @@ hr {
 
 .form-control {
   padding: 3px 5px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.alert-message {
+  font-size: 8px;
+  color: red;
 }
