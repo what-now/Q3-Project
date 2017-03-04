@@ -9,7 +9,6 @@
   [![WhatNow: Time Input](/public/images/q3-time-input.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Task Select](/public/images/q3-task-select.png)](https://whatnowapp.herokuapp.com/) [![WhatNow: Dashboard](/public/images/q3-dashboard.png)](https://whatnowapp.herokuapp.com/)
 
   OR, [click here](https://vimeo.com/206751022 "WhatNow? demo") to watch a demo on Vimeo.
-## Technologies Used
 
 ## Technologies Used
 
@@ -25,6 +24,6 @@
 
 ## Future Development
 
-  * making it better
-  * fixing all bugs
-  * making it prettier
+  * build in React Native
+  * add ability to share tasks with other users
+  
