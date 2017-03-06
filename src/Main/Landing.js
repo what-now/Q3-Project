@@ -18,7 +18,3 @@ export default function Landing({ user, tasks, sessions, loading, refreshTasks, 
     ? <TimeInput user={user} tasks={tasks} sessions={sessions} refreshTasks={refreshTasks} refreshSessions={refreshSessions}/>
     : <Dashboard user={user} tasks={tasks} sessions={sessions} refreshTasks={refreshTasks} refreshSessions={refreshSessions}/>
 }
-
-function compareTime(datestring, duration) {
-  return moment(datestring).add(duration, 'm').isBefore(moment())
-}
