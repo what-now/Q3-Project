@@ -4,7 +4,7 @@ import { FormControl, ControlLabel, FormGroup, InputGroup, Button, Row, Col } fr
 export default function AdditionalTime({ updateTime, submit, time }) {
   return <form onSubmit={(event) => submit(event)}>
     <Row>
-      <Col xsPush={9} xs={3}>
+      <Col xsPush={8} xs={4}>
         <FormGroup>
           <ControlLabel>Additional time</ControlLabel>
           <InputGroup>
