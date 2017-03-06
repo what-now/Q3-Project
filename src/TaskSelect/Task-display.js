@@ -3,6 +3,7 @@ import {Button, Col, ProgressBar, Row} from 'react-bootstrap'
 import './Task-Display.css'
 import request from 'axios'
 import AutoLinkText from 'react-autolink-text'
+import ProgressBarGroup from './progress-bars'
 
 // component for each task item, mapped. called by progress & task-modal
 
@@ -41,10 +42,7 @@ export default function TaskDisplay({ task, time, refreshTasks, del, sessions, t
       </Row>
       <Row>
         <Col xs={12}>
-          <ProgressBar>
-            <ProgressBar now={task.total_time / task.required_time * 100} />
-            <ProgressBar active now={render / task.required_time * 100}/>
-          </ProgressBar>
+          <ProgressBarGroup sessions={task.sessions} time={task.required_time} render={render}/>
           <p>Estimated remaining: {remaining}min.</p>
         </Col>
       </Row>
